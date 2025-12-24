@@ -206,33 +206,33 @@ const buttonVariants = {
 
 const slides = [
   {
-    image: require("../../Image/Cricket-wepon/img2.png"),
-    tagline: "Premium Cricket Gear",
-    quote: "Unleash Your Passion for Cricket",
+    image: require("../../Image/FoodNex/slide1.png"),
+    tagline: "Premium Dry Foods",
+    quote: "Nourish Your Life",
     saleText:
-      "Get in the game with up to 50% off on a wide range of premium cricket equipment",
+      "Get up to 50% off on a wide range of premium dry foods and products",
     productText: "Shop Now",
   },
   {
-    image: require("../../Image/Cricket-wepon/03.jpg"),
+    image: require("../../Image/FoodNex/slide2.png"),
     tagline: "Limited Time Offer",
-    quote: "Experience Victory with Our Equipment",
+    quote: "Experience Quality with Our Products",
     saleText:
-      "Don't miss out on the opportunity to upgrade your game with professional-grade gear",
+      "Don't miss out on the opportunity to upgrade your pantry with healthy dry goods",
     productText: "Buy Now",
   },
   {
-    image: require("../../Image/Cricket-wepon/01.jpg"),
+    image: require("../../Image/FoodNex/slide3.png"),
     tagline: "New Arrivals",
-    quote: "Dominate the Field Like Never Before",
-    saleText: "Discover the latest innovations and stay ahead of the competition",
+    quote: "Discover Fresh and Healthy Options",
+    saleText: "Explore the latest additions to our dry food collection",
     productText: "Explore",
   },
   {
-    image: require("../../Image/Cricket-wepon/04.jpg"),
+    image: require("../../Image/FoodNex/slide4.png"),
     tagline: "Pro Collection",
-    quote: "Elevate Your Performance",
-    saleText: "Enhance your skills and excel on the field with cutting-edge gear",
+    quote: "Elevate Your Meals",
+    saleText: "Enhance your cooking with premium dry ingredients",
     productText: "Upgrade Now",
   },
 ];
@@ -299,7 +299,7 @@ export default function HeroSlider() {
           <div key={index} className={classes.slide}>
             <img
               src={slide.image}
-              alt={`Cricket gear - ${slide.tagline}`}
+              alt={`Dry food product - ${slide.tagline}`}
               className={classes.slideImage}
             />
             <div className={classes.slideOverlay} />
