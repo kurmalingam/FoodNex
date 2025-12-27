@@ -101,9 +101,9 @@ const ProfileModal = ({ user, isAuthenticated }) => {
           fontSize="large"
         />
         {isOpen ? (
-          <ArrowDropUpIcon className="arrow-icon" />
+          <ArrowDropUpIcon className="arrow-icon" fontSize="large"/>
         ) : (
-          <ArrowDropDownIcon className="arrow-icon" />
+          <ArrowDropDownIcon className="arrow-icon" fontSize="large"/>
         )}
       </div>
       {isOpen && (
@@ -145,30 +145,30 @@ const ProfileModal = ({ user, isAuthenticated }) => {
             <div className="profile-menu">
               {user && user.role ==="admin" && (
                 <div className="menu-item" onClick={dashboardHandler}>
-                  <DashboardIcon className="menu-icon" />
+                  <DashboardIcon className="menu-icon" fontSize="large" />
                   <span>Dashboard</span>
                 </div>
               )}
               <div className="menu-item" onClick={accountHandler}>
-                <AccountCircleIcon className="menu-icon" />
+                <AccountCircleIcon className="menu-icon" fontSize="large" />
                 <span>Profile</span>
               </div>
               <div className="menu-item" onClick={ordersHandler}>
-                <AssignmentIcon className="menu-icon" />
+                <AssignmentIcon className="menu-icon" fontSize="large" />
                 <span>Orders</span>
               </div>
               <div className="menu-item" onClick={cartHandler}>
-                <ShoppingCartIcon className="menu-icon" />
+                <ShoppingCartIcon className="menu-icon" fontSize="large" />
                 <span>Cart</span>
               </div>
               {!isAuthenticated ? (
                 <div className="menu-item" onClick={loginHandler}>
-                  <LockOpenIcon className="menu-icon" />
+                  <LockOpenIcon className="menu-icon" fontSize="large" />
                   <span>Login</span>
                 </div>
               ) : (
                 <div className="menu-item" onClick={logoutUserHandler}>
-                  <ExitToAppIcon className="menu-icon" />
+                  <ExitToAppIcon className="menu-icon" fontSize="large" />
                   <span>Logout</span>
                 </div>
               )}

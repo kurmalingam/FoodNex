@@ -9,7 +9,7 @@ const CartIcon = () => {
   return (
     <div className="cartIconWrapper">
       <span className="cartIcon">
-        <ShoppingCartIcon className="icon" />
+        <ShoppingCartIcon fontSize="large" className="icon" />
         {cartItemCount > 0 && (
           <span className="cartItemCount">{cartItemCount}</span>
         )}

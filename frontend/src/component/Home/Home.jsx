@@ -81,7 +81,7 @@ function Home() {
         <Loader />
       ) : (
         <>
-          <MataData title="Cricket Weapon - Premium Cricket Equipment" />
+          <MataData title="FoodNex - Delicious Food Delivery" />
           <div className="Home_Page">
             {/* Hero Section */}
             <motion.div 
@@ -101,9 +101,9 @@ function Home() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
             >
-              <SectionHeading 
-                title="Trending Products" 
-                subtitle="Popular picks loved by cricketers"
+              <SectionHeading
+                title="Trending Products"
+                subtitle="Popular picks loved by foodies"
               />
               <motion.div
                 className="trending-products"

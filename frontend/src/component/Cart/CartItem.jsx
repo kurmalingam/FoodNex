@@ -262,7 +262,7 @@ function CartItem({
                 onClick={() => decreaseQuantity(item.productId, item.quantity)}
                 className="additem_decrease"
               >
-                <RemoveIcon />
+                <RemoveIcon fontSize="large"/>
               </IconButton>
               <Input
                 readOnly
@@ -278,7 +278,7 @@ function CartItem({
                 }}
                 className="additem_increase"
               >
-                <AddIcon />
+                <AddIcon fontSize="large"/>
               </IconButton>
             </div>
           </div>

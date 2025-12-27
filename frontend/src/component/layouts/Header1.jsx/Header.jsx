@@ -69,7 +69,7 @@ function Header() {
           <div className="headerTopRight">
             <div className="headerRetailer">
               <span>
-                <LocationOnIcon className="headerRetailer_Svg" />
+                <LocationOnIcon className="headerRetailer_Svg" fontSize="normal"/>
               </span>
               <span>FIND LOCATION</span>
             </div>
