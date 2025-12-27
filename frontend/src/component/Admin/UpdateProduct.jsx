@@ -1,17 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useAlert } from "react-alert";
+import { useAlert } from "../AlertContext";
 import MetaData from "../layouts/MataData/MataData";
 import Loader from "../layouts/loader/Loader";
-import DescriptionIcon from "@material-ui/icons/Description";
-import StorageIcon from "@material-ui/icons/Storage";
+import DescriptionIcon from "@mui/icons-material/Description";
+import StorageIcon from "@mui/icons-material/Storage";
 import {
   Avatar,
   Button,
   TextField,
   Typography,
   FormControl,
-} from "@material-ui/core";
+} from "@mui/material";
 import Sidebar from "./Siderbar";
 import {
   updateProduct,
@@ -21,16 +21,14 @@ import {
 import { useHistory } from "react-router-dom";
 import { UPDATE_PRODUCT_RESET } from "../../constants/productsConstatns";
 import { useRouteMatch } from "react-router-dom";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Box from "@material-ui/core/Box";
-import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import { InputAdornment, Box } from "@mui/material";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import CollectionsIcon from "@mui/icons-material/Collections";
-import Select from "@material-ui/core/Select";
+import { Select, MenuItem } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
-import MenuItem from "@material-ui/core/MenuItem";
 import Navbar from "./Navbar";
 import useStyles from "../User/LoginFromStyle";
 function UpdateProduct() {

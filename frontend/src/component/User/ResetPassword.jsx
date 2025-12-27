@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { resetPassword, clearErrors } from "../../actions/userAction";
-import { useAlert } from "react-alert";
 import MetaData from "../layouts/MataData/MataData";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import CricketBallLoader from "../layouts/loader/Loader";
-import { Avatar, Button, TextField, Typography } from "@material-ui/core";
+import { Avatar, Button, TextField, Typography, Alert } from "@mui/material";
 import LockResetIcon from "@mui/icons-material/LockReset";
 import useStyles from "./LoginFromStyle";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Link } from "react-router-dom";
+import { useAlert } from "../AlertContext";
 
 
 function ResetPassword() {

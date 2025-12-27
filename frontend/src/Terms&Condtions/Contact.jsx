@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Divider,
   Typography,
@@ -8,8 +8,8 @@ import {
   FormControl,
   Select,
   MenuItem,
+  Alert,
 } from "@mui/material";
-import { useAlert } from "react-alert";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import MetaData from "../component/layouts/MataData/MataData";
@@ -175,15 +175,18 @@ const useStyles = makeStyles((theme) => ({
 
 const ContactForm = () => {
   const classes = useStyles();
-  const alert = useAlert();
   const history = useHistory();
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertSeverity, setAlertSeverity] = useState("success");
+
   const handleCall = () => {
     window.location.href = "tel:+917708509046";
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert.success("Your message has been sent successfully");
+    setAlertMessage("Your message has been sent successfully");
+    setAlertSeverity("success");
     history.push("/");
   };
 
@@ -194,6 +197,11 @@ const ContactForm = () => {
         <Typography variant="h2" className={classes.title_contact_us}>
           Contact Us
         </Typography>
+        {alertMessage && (
+          <Alert severity={alertSeverity} onClose={() => setAlertMessage("")}>
+            {alertMessage}
+          </Alert>
+        )}
 
         <Divider className={classes.divider_contact} />
 

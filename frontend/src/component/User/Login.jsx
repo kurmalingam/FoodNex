@@ -7,7 +7,8 @@ import {
   Typography,
   Grid,
   Avatar,
-} from "@material-ui/core";
+  Alert,
+} from "@mui/material";
 import useStyles from "./LoginFromStyle";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -16,7 +17,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { login, clearErrors } from "../../actions/userAction";
 import CricketBallLoader from "../layouts/loader/Loader";
-import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
 import MetaData from "../layouts/MataData/MataData"
 
@@ -26,7 +26,6 @@ export default function Login() {
     const loaction = useLocation();
 
     const dispatch = useDispatch();
-    const alert = useAlert();
 
     const { isAuthenticated, loading, error } = useSelector(
       (state) => state.userData
@@ -37,6 +36,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(true);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertSeverity, setAlertSeverity] = useState("error");
 
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
@@ -63,14 +64,15 @@ export default function Login() {
       : "/account";
    useEffect(() => {
      if (error) {
-       alert.error(error);
+       setAlertMessage(error);
+       setAlertSeverity("error");
        dispatch(clearErrors());
      }
 
      if (isAuthenticated) {
        history.push(redirect);
      }
-   }, [dispatch, isAuthenticated, loading, error, alert , history , redirect]);
+   }, [dispatch, isAuthenticated, loading, error, history , redirect]);
 
      function handleLoginSubmit(e) {
        e.preventDefault();
@@ -92,6 +94,11 @@ export default function Login() {
             <Typography variant="h5" component="h1" className={classes.heading}>
               Sign in to Your Account
             </Typography>
+            {alertMessage && (
+              <Alert severity={alertSeverity} onClose={() => setAlertMessage("")}>
+                {alertMessage}
+              </Alert>
+            )}
             <TextField
               label="Email"
               variant="outlined"

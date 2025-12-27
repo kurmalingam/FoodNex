@@ -9,11 +9,10 @@ import Navbar from "./Navbar";
 import Sidebar from "./Siderbar";
 import MetaData from "../layouts/MataData/MataData";
 import Loader from "../layouts/loader/Loader";
-import { useAlert } from "react-alert";
-import { Typography, Divider } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import AccountTreeIcon from "@material-ui/icons/AccountTree";
-import { Button } from "@material-ui/core";
+import { Typography, Divider, Alert } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
+import { Button } from "@mui/material";
 import { UPDATE_ORDER_RESET } from "../../constants/orderConstant";
 import { Link, useParams } from "react-router-dom";
 import OrderDetailsSection from "../Cart/OrderDetails";
@@ -332,7 +331,6 @@ function ProcessOrder() {
   );
 
   const dispatch = useDispatch();
-  const alert = useAlert();
   const classes = useStyles();
   const params = useParams();
   const productId = params.id;
@@ -341,6 +339,8 @@ function ProcessOrder() {
   // for order status
   const [status, setStatus] = useState("");
   const [toggle, setToggle] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertSeverity, setAlertSeverity] = useState("info");
 
   // togle handler =>
   const toggleHandler = () => {
@@ -349,21 +349,23 @@ function ProcessOrder() {
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      setAlertMessage(error);
+      setAlertSeverity("error");
       dispatch(clearErrors());
     }
     if (updateError) {
-      alert.error(updateError);
+      setAlertMessage(updateError);
+      setAlertSeverity("error");
       dispatch(clearErrors());
     }
     if (isUpdated) {
-      
-      alert.success("Order Updated Successfully");  
+      setAlertMessage("Order Updated Successfully");
+      setAlertSeverity("success");
       dispatch({ type: UPDATE_ORDER_RESET });
     }
-    dispatch(getOrderDetails(productId)); 
+    dispatch(getOrderDetails(productId));
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, alert, error, isUpdated, updateError, productId]);
+  }, [dispatch, error, isUpdated, updateError, productId]);
 
   const updateOrderSubmitHandler = (e) => {
     e.preventDefault();
@@ -379,6 +381,11 @@ function ProcessOrder() {
       ) : (
         <>
           <MetaData title="Process Order" />
+          {alertMessage && (
+            <Alert severity={alertSeverity} onClose={() => setAlertMessage("")}>
+              {alertMessage}
+            </Alert>
+          )}
           <div className={classes.prodcessOrder}>
             <div
               className={

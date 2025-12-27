@@ -3,7 +3,7 @@ import CheckoutSteps from "./CheckoutSteps ";
 import { useSelector } from "react-redux";
 import MetaData from "../layouts/MataData/MataData";
 import "./ConfirmOrder.css";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import Loader from "../layouts/loader/Loader"

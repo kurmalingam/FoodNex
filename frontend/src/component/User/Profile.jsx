@@ -1,15 +1,13 @@
-import React, { useEffect } from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import { ExitToApp as LogoutIcon, Edit as EditIcon, Lock as LockIcon, ShoppingCart as OrdersIcon } from "@material-ui/icons";
+import React, { useEffect, useState } from "react";
+import { Avatar, Button, Typography, Alert } from "@mui/material";
+import { ExitToApp as LogoutIcon, Edit as EditIcon, Lock as LockIcon, ShoppingCart as OrdersIcon } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import "./Profile.css";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userAction";
-import { useAlert } from "react-alert";
 import MetaData from "../layouts/MataData/MataData";
+import { useAlert } from "../AlertContext";
 
 const ProfilePage = () => {
   const alert = useAlert();

@@ -1,6 +1,7 @@
 import React from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { Stepper, Step, StepLabel, StepConnector } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { withStyles } from "@mui/styles";
+import { Stepper, Step, StepLabel, StepConnector } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({

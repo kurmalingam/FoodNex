@@ -1,5 +1,5 @@
 import React  from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import {
   Card,
   CardMedia,
@@ -7,10 +7,10 @@ import {
   Typography,
   IconButton,
   Input,
-} from "@material-ui/core";
+} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import RemoveIcon from "@material-ui/icons/Remove";
-import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
 import {
   dispalyMoney,
 } from "../DisplayMoney/DisplayMoney";

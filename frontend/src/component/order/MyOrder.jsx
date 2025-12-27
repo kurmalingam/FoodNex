@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { myOrders, clearErrors } from "../../actions/orderAction";
 import MetaData from "../layouts/MataData/MataData";
 import CricketBallLoader from "../layouts/loader/Loader";
-import { useAlert } from "react-alert";
+import { useAlert } from "../AlertContext";
 import OrderCard from "./OrderCard";
 
 const useStyles = makeStyles((theme) => ({

@@ -1,8 +1,8 @@
 import React from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import { Typography, Button } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({

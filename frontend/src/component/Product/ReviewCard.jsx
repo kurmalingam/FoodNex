@@ -1,11 +1,10 @@
 import React, { useState, lazy, Suspense } from "react";
-import { Typography, Grid, Select, MenuItem, Button } from "@material-ui/core";
-import Rating from "@material-ui/lab/Rating";
+import { Typography, Grid, Select, MenuItem, Button, Rating } from "@mui/material";
  import CricketBallLoader from "../layouts/loader/Loader";
 import { useStyles } from "./ReviewStyle";
 import MyCard from "./Card";
 import { useSelector } from "react-redux";
-import { useAlert } from "react-alert";
+import { useAlert } from "../AlertContext";
 import { useHistory } from "react-router-dom";
 const DialogBox = lazy(() => import("./DialogBox"));
 

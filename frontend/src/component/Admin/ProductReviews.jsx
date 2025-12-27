@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./ProductList.css";
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import { useSelector, useDispatch } from "react-redux";
-import { useAlert } from "react-alert";
+import { useAlert } from "../AlertContext";
 import {
   getAllreviews,
   clearErrors,
@@ -11,19 +11,19 @@ import {
 import {useHistory } from "react-router-dom";
 import MetaData from "../layouts/MataData/MataData";
 import Loader from "../layouts/loader/Loader";
-import DeleteIcon from "@material-ui/icons/Delete";
-import Star from "@material-ui/icons/Star";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Star from "@mui/icons-material/Star";
 import {
   Avatar,
   Button,
   TextField,
   Typography,
   InputAdornment,
-} from "@material-ui/core";
+} from "@mui/material";
 import Navbar from "./Navbar";
 import Sidebar from "./Siderbar";
 import { DELETE_REVIEW_RESET } from "../../constants/productsConstatns";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import StarRateIcon from "@mui/icons-material/StarRate";
 
 const useStyles = makeStyles((theme) => ({

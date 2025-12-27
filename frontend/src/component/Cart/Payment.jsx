@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../layouts/MataData/MataData";
-import { useAlert } from "react-alert";
+import { useAlert } from "../AlertContext";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import OrderDetailsSection from "./OrderDetails";
@@ -26,16 +26,15 @@ import {
   Button,
   Divider,
   Link,
-} from "@material-ui/core";
+} from "@mui/material";
 import {
   CreditCard,
   CardMembership,
   Payment,
   Lock,
-
-} from "@material-ui/icons";
-import EditIcon from "@material-ui/icons/Edit";
-import { makeStyles } from "@material-ui/core/styles";
+} from "@mui/icons-material";
+import EditIcon from "@mui/icons-material/Edit";
+import { makeStyles } from "@mui/styles";
 import AssuredWorkloadOutlinedIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 import { ReactComponent as MasterCard } from "../../Image/payment-svg/mastercard.svg";
 import { ReactComponent as Visa } from "../../Image/payment-svg/visa (1).svg";

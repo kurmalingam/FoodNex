@@ -7,19 +7,19 @@ import {
   FormControlLabel,
   Grid,
   Typography,
-} from "@material-ui/core";
+  Alert,
+} from "@mui/material";
 import CricketBallLoader from "../layouts/loader/Loader";
 import MetaData from "../layouts/MataData/MataData";
 import { Link } from "react-router-dom";
 import { signUp, clearErrors } from "../../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useAlert } from "react-alert";
 import { useHistory } from "react-router-dom";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import useStyles from "./LoginFromStyle";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 function Signup() {
   const classes = useStyles();
@@ -34,6 +34,8 @@ function Signup() {
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("");
   const [loading, setLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertSeverity, setAlertSeverity] = useState("error");
 
   const [areCheckboxesChecked, setAreCheckboxesChecked] = useState({
     checkbox1: false,
@@ -42,21 +44,22 @@ function Signup() {
   const history = useHistory();
 
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const { isAuthenticated, error } = useSelector((state) => state.userData);
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      setAlertMessage(error);
+      setAlertSeverity("error");
       dispatch(clearErrors());
     }
 
     if (isAuthenticated) {
-      alert.success("User Registered Successfully");
+      setAlertMessage("User Registered Successfully");
+      setAlertSeverity("success");
       history.push("/account");
     }
-  }, [dispatch, isAuthenticated, loading, error, alert , history]);
+  }, [dispatch, isAuthenticated, loading, error, history]);
 
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
@@ -121,7 +124,8 @@ function Signup() {
   
 
     if (password !== confirmPassword) {
-      alert.error("Password and Confirm Password do not match");
+      setAlertMessage("Password and Confirm Password do not match");
+      setAlertSeverity("error");
       setLoading(false);
       return;
     }
@@ -148,8 +152,13 @@ function Signup() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography variant="h5" component="h1" className={classes.heading}>
-              Sign Up for an Account ! 
+              Sign Up for an Account !
             </Typography>
+            {alertMessage && (
+              <Alert severity={alertSeverity} onClose={() => setAlertMessage("")}>
+                {alertMessage}
+              </Alert>
+            )}
             <TextField
               label="Name"
               variant="outlined"

@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import {
   Card,
   CardActionArea,
@@ -8,7 +8,7 @@ import {
   Typography,
   Button,
   Box,
-} from "@material-ui/core";
+} from "@mui/material";
 
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";

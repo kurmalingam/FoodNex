@@ -3,13 +3,14 @@ import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import { useRouteMatch } from "react-router-dom";
-import { useAlert } from "react-alert";
+import { Alert } from "@mui/material";
 
 import { dispalyMoney } from "../DisplayMoney/DisplayMoney";
 import ReviewCard from "./ReviewCard";
 import MetaData from "../layouts/MataData/MataData";
 import CricketBallLoader from "../layouts/loader/Loader";
 import staticProducts from "../../constants/staticProducts";
+import { useAlert } from "../AlertContext";
 
 import "./ProductDetails.css";
 

@@ -10,7 +10,7 @@ import { makeStyles } from "@mui/styles";
 import ReplayIcon from "@mui/icons-material/Replay";
 import EditIcon from "@mui/icons-material/Edit";
 import { useDispatch } from "react-redux";
-import {useAlert} from "react-alert";
+import { useAlert } from "../AlertContext";
 import { addItemToCart } from "../../actions/cartAction";
 import {useHistory} from "react-router-dom";
 import DialogBox from "../Product/DialogBox";

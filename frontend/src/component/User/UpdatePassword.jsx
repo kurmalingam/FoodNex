@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Button, TextField, Typography } from "@material-ui/core";
+import { Avatar, Button, TextField, Typography, Alert } from "@mui/material";
 import SecurityUpdateGoodIcon from "@mui/icons-material/SecurityUpdateGood";
 import useStyles from "./LoginFromStyle";
 import Visibility from "@mui/icons-material/Visibility";
@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 import CricketBallLoader from "../layouts/loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePassword, clearErrors } from "../../actions/userAction";
-import { useAlert } from "react-alert";
 import { UPDATE_PASSWORD_RESET } from "../../constants/userConstanat";
 import MetaData from "../layouts/MataData/MataData";
-import { useHistory } from "react-router-dom"; 
+import { useHistory } from "react-router-dom";
+import { useAlert } from "../AlertContext";
 
 function UpdatePassword() {
   const history = useHistory();

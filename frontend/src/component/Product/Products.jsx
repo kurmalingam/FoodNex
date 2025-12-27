@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Products.css";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../layouts/loader/Loader";
-import { useAlert } from "react-alert";
+import { useAlert } from "../AlertContext";
 import { useRouteMatch } from "react-router-dom";
 import MetaData from "../layouts/MataData/MataData";
 import { clearErrors, getProduct } from "../../actions/productAction";

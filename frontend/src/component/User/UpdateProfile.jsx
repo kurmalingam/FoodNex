@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Button, TextField, Typography } from "@material-ui/core";
+import { Avatar, Button, TextField, Typography, Alert } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import CricketBallLoader from "../layouts/loader/Loader";
 import {
@@ -7,18 +7,16 @@ import {
   updateProfile,
   load_UserProfile,
 } from "../../actions/userAction";
-import { useAlert } from "react-alert";
 import { UPDATE_PROFILE_RESET } from "../../constants/userConstanat";
 import MetaData from "../layouts/MataData/MataData";
 import { useHistory } from "react-router-dom";
 import UpdateIcon from "@mui/icons-material/Update";
 import useStyles from "./LoginFromStyle";
 import { Link } from "react-router-dom";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 function UpdateProfile() {
   const history = useHistory();
-  const alert = useAlert();
   const dispatch = useDispatch();
   const { error, isUpdated, loading } = useSelector(
     (state) => state.profileData
@@ -31,6 +29,8 @@ function UpdateProfile() {
   const [isValidName, setIsValidEName] = useState(true);
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertSeverity, setAlertSeverity] = useState("error");
 
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
@@ -82,12 +82,14 @@ function UpdateProfile() {
     }
 
     if (error) {
-      alert.error(error);
+      setAlertMessage(error);
+      setAlertSeverity("error");
       dispatch(clearErrors());
     }
     // isUpadted is nothing But success message from response. once user updated then pop the message and show profile data
     if (isUpdated) {
-      alert.success("Profile Updated Successfully");
+      setAlertMessage("Profile Updated Successfully");
+      setAlertSeverity("success");
       // now get user New data from backend
       dispatch({
         type: UPDATE_PROFILE_RESET,
@@ -102,7 +104,7 @@ function UpdateProfile() {
 
       dispatch(load_UserProfile());
     }
-  }, [dispatch, error, alert, history, user, isUpdated]);
+  }, [dispatch, error, history, user, isUpdated]);
 
   const isSignInDisabled = !(email && isValidEmail && name && isValidName);
 

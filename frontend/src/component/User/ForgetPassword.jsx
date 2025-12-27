@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import LockClockIcon from "@mui/icons-material/LockClock";
-import { TextField, Button, Typography, Avatar } from "@material-ui/core";
+import { TextField, Button, Typography, Avatar } from "@mui/material";
 import useStyles from "./LoginFromStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { forgetPassword, clearErrors } from "../../actions/userAction";
-import { useAlert } from "react-alert";
+import { useAlert } from "../AlertContext";
 import MetaData from "../layouts/MataData/MataData";
 import CricketBallLoader from "../layouts/loader/Loader";
 
@@ -12,9 +12,8 @@ import { Link } from "react-router-dom";
 
 export default function ForgetPassowrd() {
   const classes = useStyles();
- 
+
   const dispatch = useDispatch();
-  const alert = useAlert();
   const { error, message, loading } = useSelector(
     (state) => state.forgetPassword
   );
@@ -22,6 +21,8 @@ export default function ForgetPassowrd() {
   const [email, setEmail] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isDone, setIsDone] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertSeverity, setAlertSeverity] = useState("success");
 
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;

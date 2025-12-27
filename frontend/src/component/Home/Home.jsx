@@ -6,7 +6,7 @@ import MataData from "../layouts/MataData/MataData";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layouts/loader/Loader";
-import { useAlert } from "react-alert";
+import { useAlert } from "../AlertContext";
 import HeroSlider from "./HeroSilder";
 import staticProducts from "../../constants/staticProducts";
 

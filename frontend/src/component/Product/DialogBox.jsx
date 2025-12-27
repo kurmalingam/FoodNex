@@ -16,14 +16,14 @@ import {
   FormControlLabel,
   Radio,
   Box,
-} from "@material-ui/core";
-import { Close } from "@material-ui/icons";
-import Rating from "@material-ui/lab/Rating";
+  Rating,
+} from "@mui/material";
+import { Close } from "@mui/icons-material";
 import { NEW_REVIEW_RESET } from "../../constants/productsConstatns";
 import { useSelector, useDispatch } from "react-redux";
 
 import { useParams } from "react-router-dom";
-import { useAlert } from "react-alert";
+import { useAlert } from "../AlertContext";
 import { clearErrors, newReview } from "../../actions/productAction";
 
 

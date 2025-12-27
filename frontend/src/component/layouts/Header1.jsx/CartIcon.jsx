@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { ShoppingCart } from "@material-ui/icons";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./CartIcon.css"
 const CartIcon = () => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -9,7 +9,7 @@ const CartIcon = () => {
   return (
     <div className="cartIconWrapper">
       <span className="cartIcon">
-        <ShoppingCart className="icon" />
+        <ShoppingCartIcon className="icon" />
         {cartItemCount > 0 && (
           <span className="cartItemCount">{cartItemCount}</span>
         )}

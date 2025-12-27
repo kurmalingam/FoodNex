@@ -1,8 +1,8 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { IconButton } from "@material-ui/core";
+import { IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
