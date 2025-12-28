@@ -11,7 +11,7 @@ import { UPDATE_PROFILE_RESET } from "../../constants/userConstanat";
 import MetaData from "../layouts/MataData/MataData";
 import { useHistory } from "react-router-dom";
 import UpdateIcon from "@mui/icons-material/Update";
-import useStyles from "./LoginFromStyle";
+import useStyles from "./LoginFormStyle";
 import { Link } from "react-router-dom";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 

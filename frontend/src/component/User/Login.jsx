@@ -8,8 +8,9 @@ import {
   Grid,
   Avatar,
   Alert,
+  IconButton,
 } from "@mui/material";
-import useStyles from "./LoginFromStyle";
+import useStyles from "./LoginFormStyle";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
@@ -103,7 +104,8 @@ export default function Login() {
               label="Email"
               variant="outlined"
               fullWidth
-              className={`${classes.emailInput} ${classes.textField}`}
+              margin="normal"
+              className={classes.textField}
               value={email}
               onChange={handleEmailChange}
               error={!isValidEmail && email !== ""}
@@ -118,16 +120,16 @@ export default function Login() {
               variant="outlined"
               type={showPassword ? "text" : "password"}
               fullWidth
-              className={`${classes.passwordInput} ${classes.textField}`}
+              margin="normal"
+              className={classes.textField}
               InputProps={{
                 endAdornment: (
-                  <Button
-                    variant="outlined"
+                  <IconButton
                     className={classes.showPasswordButton}
                     onClick={handleShowPasswordClick}
                   >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </Button>
+                    {showPassword ? <VisibilityOff fontSize="large"/> : <Visibility fontSize="large"/>}
+                  </IconButton>
                 ),
               }}
               value={password}
@@ -136,7 +138,7 @@ export default function Login() {
             <Grid container className={classes.rememberMeContainer}>
               <Grid item>
                 <FormControlLabel
-                  control={<Checkbox color="primary" />}
+                  control={<Checkbox color="primary" size="large"/>}
                   label="Remember me"
                 />
               </Grid>

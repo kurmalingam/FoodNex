@@ -6,7 +6,7 @@ import { useHistory, useRouteMatch } from "react-router-dom";
 import CricketBallLoader from "../layouts/loader/Loader";
 import { Avatar, Button, TextField, Typography, Alert } from "@mui/material";
 import LockResetIcon from "@mui/icons-material/LockReset";
-import useStyles from "./LoginFromStyle";
+import useStyles from "./LoginFormStyle";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Link } from "react-router-dom";

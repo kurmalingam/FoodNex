@@ -30,7 +30,7 @@ import CollectionsIcon from "@mui/icons-material/Collections";
 import { Select, MenuItem } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import Navbar from "./Navbar";
-import useStyles from "../User/LoginFromStyle";
+import useStyles from "../User/LoginFormStyle";
 function UpdateProduct() {
   const dispatch = useDispatch();
   const history = useHistory();

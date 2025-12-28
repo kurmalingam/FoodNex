@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LockClockIcon from "@mui/icons-material/LockClock";
 import { TextField, Button, Typography, Avatar } from "@mui/material";
-import useStyles from "./LoginFromStyle";
+import useStyles from "./LoginFormStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { forgetPassword, clearErrors } from "../../actions/userAction";
 import { useAlert } from "../AlertContext";
