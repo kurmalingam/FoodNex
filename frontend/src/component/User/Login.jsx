@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   FormControlLabel,
@@ -10,29 +10,28 @@ import {
   Alert,
   IconButton,
 } from "@mui/material";
-import useStyles from "./LoginFormStyle";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
+
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
+
 import { login, clearErrors } from "../../actions/userAction";
-import CricketBallLoader from "../layouts/loader/Loader";
-import { Link } from "react-router-dom";
-import MetaData from "../layouts/MataData/MataData"
+import Loader from "../layouts/loader/Loader";
+import MetaData from "../layouts/MataData/MataData";
+import useStyles from "./LoginFormStyle";
 
 export default function Login() {
-
-    const history = useHistory();
-    const loaction = useLocation();
-
-    const dispatch = useDispatch();
-
-    const { isAuthenticated, loading, error } = useSelector(
-      (state) => state.userData
-    );
-
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
+
+  const { isAuthenticated, loading, error } = useSelector(
+    (state) => state.userData
+  );
+
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,141 +39,130 @@ export default function Login() {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertSeverity, setAlertSeverity] = useState("error");
 
-  const handleEmailChange = (event) => {
-    const newEmail = event.target.value;
-    setEmail(newEmail);
-    setIsValidEmail(
-      newEmail !== "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newEmail)
-    );
+  const redirect = location.search
+    ? location.search.split("=")[1]
+    : "/account";
+
+  useEffect(() => {
+    if (error) {
+      setAlertMessage(error);
+      setAlertSeverity("error");
+      dispatch(clearErrors());
+    }
+
+    if (isAuthenticated) {
+      history.push(redirect);
+    }
+  }, [dispatch, isAuthenticated, error, history, redirect]);
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    setIsValidEmail(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value));
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(email, password));
   };
-
-  const handleShowPasswordClick = () => {
-    setShowPassword(!showPassword);
-  };
-  
 
   const isSignInDisabled = !(email && password && isValidEmail);
 
-  
-    const redirect = loaction.search
-      ? loaction.search.split("=")[1]
-      : "/account";
-   useEffect(() => {
-     if (error) {
-       setAlertMessage(error);
-       setAlertSeverity("error");
-       dispatch(clearErrors());
-     }
-
-     if (isAuthenticated) {
-       history.push(redirect);
-     }
-   }, [dispatch, isAuthenticated, loading, error, history , redirect]);
-
-     function handleLoginSubmit(e) {
-       e.preventDefault();
-       dispatch(login(email, password));
-     }
-
-
   return (
     <>
-      <MetaData title={"Login"} />
+      <MetaData title="Login" />
+
       {loading ? (
-        <CricketBallLoader />
+        <Loader />
       ) : (
         <div className={classes.formContainer}>
-          <form className={classes.form}>
+          <form className={classes.form} onSubmit={handleLoginSubmit}>
             <Avatar className={classes.avatar}>
               <LockOpenIcon fontSize="large" />
             </Avatar>
-            <Typography variant="h5" component="h1" className={classes.heading}>
+
+            <Typography className={classes.heading}>
               Sign in to Your Account
             </Typography>
+
             {alertMessage && (
-              <Alert severity={alertSeverity} onClose={() => setAlertMessage("")}>
+              <Alert severity={alertSeverity} sx={{ mb: 2 }}>
                 {alertMessage}
               </Alert>
             )}
+
             <TextField
               label="Email"
-              variant="outlined"
               fullWidth
-              margin="normal"
+              margin="dense"
               className={classes.textField}
               value={email}
               onChange={handleEmailChange}
               error={!isValidEmail && email !== ""}
               helperText={
                 !isValidEmail && email !== ""
-                  ? "Please enter a valid email address."
+                  ? "Please enter a valid email address"
                   : ""
               }
             />
+
             <TextField
               label="Password"
-              variant="outlined"
               type={showPassword ? "text" : "password"}
               fullWidth
-              margin="normal"
+              margin="dense"
               className={classes.textField}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               InputProps={{
                 endAdornment: (
                   <IconButton
                     className={classes.showPasswordButton}
-                    onClick={handleShowPasswordClick}
+                    onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? <VisibilityOff fontSize="large"/> : <Visibility fontSize="large"/>}
+                    {!showPassword ? (
+                      <VisibilityOff fontSize="large" />
+                    ) : (
+                      <Visibility fontSize="large" />
+                    )}
                   </IconButton>
                 ),
               }}
-              value={password}
-              onChange={handlePasswordChange}
             />
+
             <Grid container className={classes.rememberMeContainer}>
-              <Grid item>
-                <FormControlLabel
-                  control={<Checkbox color="primary" size="large"/>}
-                  label="Remember me"
-                />
-              </Grid>
-              <Grid item>
-                <Link
-                  to="/password/forgot"
-                  className={classes.forgotPasswordLink}
-                >
-                  Forgot your password?
-                </Link>
-              </Grid>
-            </Grid>
-            <Typography
-              variant="body2"
-              className={classes.termsAndConditionsText}
-            >
-              I accept the FoodNex Terms of Use and acknowledge FoodNex
-              will use my information in accordance with its
-              <Link to="/policy/privacy" className={classes.privacyText}>
-                Privacy Policy.
+              <FormControlLabel
+                control={<Checkbox size="large" />}
+                label="Remember me"
+              />
+              <Link
+                to="/password/forgot"
+                className={classes.forgotPasswordLink}
+              >
+                Forgot your password?
               </Link>
+            </Grid>
+
+            <Typography className={classes.termsAndConditionsText}>
+              I accept the FoodNex Terms of Use and acknowledge FoodNex will use my
+              information in accordance with its 
+              <Link to="/policy/privacy" className={classes.privacyText}>
+                Privacy Policy
+              </Link>
+              .
             </Typography>
+
             <Button
+              type="submit"
               variant="contained"
-              className={classes.loginButton}
               fullWidth
+              className={classes.loginButton}
               disabled={isSignInDisabled}
-              onClick={handleLoginSubmit}
             >
               Sign in
             </Button>
-            <Typography
-              variant="body1"
-              align="center"
-              style={{ marginTop: "1rem" }}
-            >
+
+            <Typography align="center" sx={{ mt: 2 }}>
               Don't have an account?
               <Link to="/signup" className={classes.createAccount}>
                 Create Account

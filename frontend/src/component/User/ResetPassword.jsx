@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetPassword, clearErrors } from "../../actions/userAction";
 import MetaData from "../layouts/MataData/MataData";
 import { useHistory, useRouteMatch } from "react-router-dom";
-import CricketBallLoader from "../layouts/loader/Loader";
+import Loader from "../layouts/loader/Loader";
 import { Avatar, Button, TextField, Typography, Alert } from "@mui/material";
 import LockResetIcon from "@mui/icons-material/LockReset";
 import useStyles from "./LoginFormStyle";
@@ -84,7 +84,7 @@ const history = useHistory();
     <>
       <MetaData title="Reset Password" />
       {loading ? (
-        <CricketBallLoader />
+        <Loader />
       ) : (
         <div className={classes.formContainer}>
           <form className={classes.form}>

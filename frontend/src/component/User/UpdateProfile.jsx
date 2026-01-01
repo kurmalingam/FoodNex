@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Avatar, Button, TextField, Typography, Alert } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import CricketBallLoader from "../layouts/loader/Loader";
+import Loader from "../layouts/loader/Loader";
 import {
   clearErrors,
   updateProfile,
@@ -112,7 +112,7 @@ function UpdateProfile() {
     <>
       <MetaData title="Update Profile" />
       {loading ? (
-        <CricketBallLoader />
+        <Loader />
       ) : (
         <div className={classes.formContainer}>
           <form className={classes.form}>

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { forgetPassword, clearErrors } from "../../actions/userAction";
 import { useAlert } from "../AlertContext";
 import MetaData from "../layouts/MataData/MataData";
-import CricketBallLoader from "../layouts/loader/Loader";
+import Loader from "../layouts/loader/Loader";
 
 import { Link } from "react-router-dom";
 
@@ -62,7 +62,7 @@ export default function ForgetPassowrd() {
     <>
       <MetaData title="Forget Password" />
       {loading ? (
-        <CricketBallLoader />
+        <Loader />
       ) : (
         <div className={classes.formContainer}>
           <form className={classes.form} onSubmit={handleforgotPasswordSubmit}>

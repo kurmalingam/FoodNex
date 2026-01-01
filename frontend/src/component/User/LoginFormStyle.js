@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
     minHeight: "100vh",
     background: theme.colors.gradients.hero,
   },
+
   form: {
     width: "450px",
     margin: "auto",
@@ -18,12 +19,11 @@ const useStyles = makeStyles(() => ({
     padding: theme.spacing.xl,
     boxShadow: theme.shadows.card,
     backgroundColor: theme.colors.neutral.white,
-    transition: theme.transitions.smooth,
   },
+
   avatar: {
     margin: `0 auto ${theme.spacing.lg}`,
     background: `linear-gradient(135deg, ${theme.colors.primary.main} 0%, ${theme.colors.primary.dark} 100%)`,
-    fontSize: "3rem",
     width: "70px",
     height: "70px",
     display: "flex",
@@ -31,97 +31,20 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     boxShadow: theme.shadows.md,
   },
+
   heading: {
     textAlign: "center",
     marginBottom: theme.spacing.xl,
     color: theme.colors.neutral.charcoal,
     fontFamily: theme.typography.fontFamily.primary,
     fontWeight: theme.typography.weight.bold,
-    fontSize: theme.typography.size['2xl'],
+    fontSize: theme.typography.size["2xl"],
   },
 
-  showPasswordButton: {
-    color: theme.colors.neutral.gray,
-    "&:hover": {
-      color: theme.colors.primary.main,
-      background: "none",
-    },
-  },
-  rememberMeContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    fontSize: theme.typography.size.sm,
-    marginTop: theme.spacing.lg,
-    "& .MuiIconButton-label": {
-      color: theme.colors.neutral.charcoal,
-    },
-    "& .MuiIconButton-root": {
-      transform: "scale(5)",
-      "&:hover": {
-        backgroundColor: "transparent",
-        border: "none",
-      },
-    },
-  },
-  forgotPasswordLink: {
-    color: theme.colors.neutral.charcoal,
-    textDecoration: "none",
-    fontFamily: theme.typography.fontFamily.secondary,
-    "&:hover": {
-      textDecoration: "underline",
-      color: theme.colors.primary.main,
-    },
-  },
-  termsAndConditionsText: {
-    fontFamily: theme.typography.fontFamily.secondary,
-    color: theme.colors.neutral.gray,
-    textAlign: "center",
-    lineHeight: theme.typography.lineHeight.normal,
-    paddingLeft: theme.spacing.sm,
-    paddingRight: theme.spacing.sm,
-    marginTop: theme.spacing.lg,
-    marginBottom: theme.spacing.md,
-    fontSize: theme.typography.size.xs,
-  },
-  loginButton: {
-    color: theme.colors.neutral.white,
-    backgroundColor: theme.colors.primary.main,
-    border: `2px solid ${theme.colors.primary.main}`,
-    margin: `${theme.spacing.lg} 0`,
-    fontFamily: theme.typography.fontFamily.primary,
-    fontWeight: theme.typography.weight.medium,
-    "&:disabled": {
-      backgroundColor: theme.colors.neutral.gray,
-      color: theme.colors.neutral.white,
-      borderColor: theme.colors.neutral.gray,
-    },
-    "&:hover": {
-      backgroundColor: theme.colors.primary.dark,
-      borderColor: theme.colors.primary.dark,
-      boxShadow: theme.shadows.md,
-    },
-  },
-  privacyText: {
-    marginLeft: "4px",
-    textDecoration: "underline",
-    color: theme.colors.neutral.charcoal,
-    fontSize: theme.typography.size.sm,
-    "&:hover": {
-      color: theme.colors.primary.main,
-    },
-  },
-  createAccount: {
-    fontSize: theme.typography.size.base,
-    fontWeight: theme.typography.weight.medium,
-    color: theme.colors.neutral.charcoal,
-    paddingLeft: theme.spacing.sm,
-    "&:hover": {
-      color: theme.colors.primary.main,
-      textDecoration: "underline",
-    },
-  },
+  /* ✅ INPUT SPACING FIX */
   textField: {
+    marginBottom: theme.spacing.lg,
+
     "& .MuiOutlinedInput-root": {
       borderRadius: theme.borderRadius.base,
       "&:hover fieldset": {
@@ -131,26 +54,117 @@ const useStyles = makeStyles(() => ({
         borderColor: theme.colors.primary.main,
         borderWidth: "2px",
       },
-      "& .MuiOutlinedInput-input": {
-        padding: "16px 14px",
-        fontSize: theme.typography.size.base,
-        fontFamily: theme.typography.fontFamily.secondary,
-      },
     },
+
     "& .MuiInputLabel-root": {
-      color: theme.colors.neutral.gray,
-      fontSize: theme.typography.size.base,
       fontFamily: theme.typography.fontFamily.secondary,
       "&.Mui-focused": {
         color: theme.colors.primary.main,
       },
     },
   },
-  inputField: {
-    marginBottom: theme.spacing.lg,
-    width: "100%",
+
+  showPasswordButton: {
+    color: theme.colors.neutral.gray,
+    "&:hover": {
+      color: theme.colors.primary.main,
+      background: "none",
+    },
   },
+
+  /* ✅ CHECKBOX SECTION FIX */
+  gridcheckbox: {
+    marginTop: theme.spacing.lg,
+    marginBottom: theme.spacing.lg,
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing.sm,
+  },
+
+  checkbox: {
+    "& .MuiCheckbox-root": {
+      padding: theme.spacing.sm,
+    },
+    "& .MuiFormControlLabel-label": {
+      fontSize: theme.typography.size.sm,
+    },
+  },
+
+  termsAndConditionsText: {
+    textAlign: "center",
+    marginTop: theme.spacing.lg,
+    marginBottom: theme.spacing.md,
+    fontSize: theme.typography.size.xs,
+    color: theme.colors.neutral.gray,
+  },
+
+  loginButton: {
+    marginTop: theme.spacing.lg,
+    backgroundColor: theme.colors.primary.main,
+    color: theme.colors.neutral.white,
+    "&:hover": {
+      backgroundColor: theme.colors.primary.dark,
+    },
+  },
+
+  createAccount: {
+    paddingLeft: theme.spacing.sm,
+    fontWeight: theme.typography.weight.medium,
+    color: theme.colors.neutral.charcoal,
+    "&:hover": {
+      color: theme.colors.primary.main,
+      textDecoration: "underline",
+    },
+  },
+
+  /* ✅ AVATAR UPLOAD */
+  root: {
+    display: "flex",
+    alignItems: "center",
+    marginTop: theme.spacing.md,
+  },
+
+  avatar2: {
+    width: "60px",
+    height: "60px",
+    marginRight: theme.spacing.md,
+    borderRadius: "50%",
+    border: `2px solid ${theme.colors.primary.main}`,
+  },
+
+  input: {
+    display: "none",
+  },
+
+  privacyText :{
+  marginLeft: theme.spacing.xs,     
+  },
+
+
+  uploadAvatarButton: {
+    backgroundColor: theme.colors.primary.main,
+    color: theme.colors.neutral.white,
+    "&:hover": {
+      backgroundColor: theme.colors.primary.dark,
+    },
+  },
+  rememberMeContainer: {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginTop: theme.spacing.lg,
+  marginBottom: theme.spacing.lg,
+},
+
+forgotPasswordLink: {
+  fontSize: theme.typography.size.sm,
+  color: theme.colors.primary.main,
+  textDecoration: "none",
+  "&:hover": {
+    textDecoration: "underline",
+  },
+},
+
 }));
 
 export default useStyles;
-

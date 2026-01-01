@@ -8,6 +8,7 @@ import {
   Grid,
   Typography,
   Alert,
+  IconButton,
 } from "@mui/material";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +18,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-import CricketBallLoader from "../layouts/loader/Loader";
+import Loader from "../layouts/loader/Loader";
 import MetaData from "../layouts/MataData/MataData";
 import { signUp, clearErrors } from "../../actions/userAction";
 import useStyles from "./LoginFormStyle";
@@ -36,11 +37,14 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidName, setIsValidName] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
+
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertSeverity, setAlertSeverity] = useState("error");
@@ -58,8 +62,6 @@ function Signup() {
     }
 
     if (isAuthenticated) {
-      setAlertMessage("User Registered Successfully");
-      setAlertSeverity("success");
       history.push("/account");
     }
   }, [dispatch, isAuthenticated, error, history]);
@@ -127,25 +129,28 @@ function Signup() {
       <MetaData title="Sign Up" />
 
       {loading ? (
-        <CricketBallLoader />
+        <Loader />
       ) : (
         <div className={classes.formContainer}>
           <form className={classes.form} onSubmit={handleSignUpSubmit}>
             <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
+              <LockOutlinedIcon fontSize="large" />
             </Avatar>
 
             <Typography className={classes.heading}>
-              Sign Up for an Account!
+              Create Your Account
             </Typography>
 
             {alertMessage && (
-              <Alert severity={alertSeverity}>{alertMessage}</Alert>
+              <Alert severity={alertSeverity} sx={{ mb: 2 }}>
+                {alertMessage}
+              </Alert>
             )}
 
             <TextField
               label="Name"
               fullWidth
+              margin="dense"
               className={classes.textField}
               value={name}
               onChange={(e) => {
@@ -163,6 +168,7 @@ function Signup() {
             <TextField
               label="Email"
               fullWidth
+              margin="dense"
               className={classes.textField}
               value={email}
               onChange={handleEmailChange}
@@ -178,6 +184,7 @@ function Signup() {
               label="Password"
               type={showPassword ? "text" : "password"}
               fullWidth
+              margin="dense"
               className={classes.textField}
               value={password}
               onChange={(e) => {
@@ -192,9 +199,16 @@ function Signup() {
               }
               InputProps={{
                 endAdornment: (
-                  <Button onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </Button>
+                  <IconButton
+                    onClick={() => setShowPassword(!showPassword)}
+                    className={classes.showPasswordButton}
+                  >
+                    {!showPassword ? (
+                      <VisibilityOff fontSize="large" />
+                    ) : (
+                      <Visibility fontSize="large" />
+                    )}
+                  </IconButton>
                 ),
               }}
             />
@@ -203,6 +217,7 @@ function Signup() {
               label="Confirm Password"
               type={showPassword ? "text" : "password"}
               fullWidth
+              margin="dense"
               className={classes.textField}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -222,22 +237,22 @@ function Signup() {
                   variant="contained"
                   component="span"
                   className={classes.uploadAvatarButton}
-                  startIcon={<CloudUploadIcon />}
+                  startIcon={<CloudUploadIcon fontSize="large" />}
                 >
                   Upload Avatar
                 </Button>
               </label>
             </div>
 
-            <Grid container>
+            <Grid container direction="column">
               <FormControlLabel
-                control={<Checkbox />}
+                control={<Checkbox size="large" />}
                 label="I accept Terms & Conditions"
                 checked={areCheckboxesChecked.checkbox1}
                 onChange={handleCheckboxChange("checkbox1")}
               />
               <FormControlLabel
-                control={<Checkbox />}
+                control={<Checkbox size="large" />}
                 label="I accept Terms of Use"
                 checked={areCheckboxesChecked.checkbox2}
                 onChange={handleCheckboxChange("checkbox2")}
@@ -246,11 +261,12 @@ function Signup() {
 
             <Button
               type="submit"
+              variant="contained"   
               fullWidth
               className={classes.loginButton}
               disabled={isSignUpDisabled}
             >
-              Create Account
+              Sign Up
             </Button>
 
             <Typography align="center" sx={{ mt: 2 }}>
