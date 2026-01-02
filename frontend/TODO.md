@@ -1,23 +1,24 @@
-# TODO: Fix ProfileModel Avatar Error on Vercel
+# TODO: Fix Login/Signup 405 Error on Vercel
 
 ## Issue
-- Login works locally but fails on Vercel with "TypeError: Cannot read properties of undefined (reading 'avatar')" in ProfileModel.jsx at line 121:31
-- Error occurs when accessing user.avatar on an undefined user object
+- Login and signup work locally but fail on Vercel with "Request failed with status code 405"
+- Console shows "Failed to load resource: the server responded with a status of 405 ()"
+- 405 Method Not Allowed indicates the HTTP method is not supported for the requested resource
 
 ## Root Cause
-- ProfileModal assumes user object exists when isAuthenticated is true
-- In some cases (possibly Vercel deployment), user may be undefined despite isAuthenticated being true
-- Code uses user.avatar?.url but if user is undefined, it throws error before optional chaining
+- Vercel configuration issue: vercel.json had a typo ("frotend" instead of "frontend")
+- All requests were being routed to backend/server.js, causing static files and API routing problems
+- API routes weren't properly configured for Vercel deployment
 
 ## Plan
-1. Add null checks for user object in ProfileModel.jsx
-2. Use optional chaining for all user property accesses
-3. Add fallback rendering if user is undefined
-4. Test the fix locally and deploy to Vercel
+1. Fix vercel.json configuration
+2. Use routes instead of rewrites to properly handle API and static file serving
+3. Route /api/* requests to backend, others to frontend build
+4. Test deployment on Vercel
 
 ## Tasks
-- [ ] Update ProfileModel.jsx to handle undefined user
-- [ ] Add user?. checks for avatar, createdAt, _id, name, email
-- [ ] Add conditional rendering for profile info
-- [ ] Test login functionality locally
-- [ ] Deploy to Vercel and verify fix
+- [x] Fix typo in vercel.json ("frotend" -> "frontend")
+- [x] Update routing configuration to use routes instead of rewrites
+- [x] Configure API routes to go to backend, static files to frontend
+- [ ] Deploy to Vercel and test login/signup functionality
+- [ ] Verify both frontend and API work correctly
