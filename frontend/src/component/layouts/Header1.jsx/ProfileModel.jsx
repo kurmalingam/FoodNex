@@ -114,7 +114,7 @@ const ProfileModal = ({ user, isAuthenticated }) => {
                 <strong>Welcome!</strong>
                 <p>To access your account and manage orders, please log in.</p>
               </div>
-            ) : (
+            ) : user ? (
               <>
                 <div className="profile-info">
                   <Avatar
@@ -124,22 +124,27 @@ const ProfileModal = ({ user, isAuthenticated }) => {
                     style={{ width: "68px", height: "68px" }}
                   />
                   <p className="user-id">
-                    <strong>ID :</strong> {user._id.substring(0, 8)}
+                    <strong>ID :</strong> {user._id?.substring(0, 8) || ""}
                   </p>
 
                   <p className="user-name">
-                    <strong>Name :</strong> {user.name}
+                    <strong>Name :</strong> {user.name || ""}
                   </p>
 
                   <p className="user-email">
-                    <strong>Email :</strong> {user.email}
+                    <strong>Email :</strong> {user.email || ""}
                   </p>
 
                   <p className="created-at">
-                    <strong>Joined at:</strong> {createdAt(user)}
+                    <strong>Joined at:</strong> {user.createdAt ? createdAt(user) : ""}
                   </p>
                 </div>
               </>
+            ) : (
+              <div className="welcome-message">
+                <strong>Loading...</strong>
+                <p>Please wait while we load your profile.</p>
+              </div>
             )}
             <div className="divider" />
             <div className="profile-menu">
