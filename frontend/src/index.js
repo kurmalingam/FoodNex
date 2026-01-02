@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import store from "./store";
 import App from "./App";
 // Replace BrowserRouter import with HashRouter
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { AlertProvider } from "./component/AlertContext";
 import customTheme from "./component/theme";
 
@@ -53,7 +53,7 @@ const root = createRoot(container);
 root.render(
   <>
     {/* Wrap the application with HashRouter for mobile routing support */}
-    <HashRouter>
+    <BrowserRouter>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <AlertProvider>
@@ -61,6 +61,6 @@ root.render(
           </AlertProvider>
         </Provider>
       </ThemeProvider>
-    </HashRouter>
+    </BrowserRouter>
   </>,
 );

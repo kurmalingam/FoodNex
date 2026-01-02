@@ -97,32 +97,13 @@ export const load_UserProfile = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    // Check if user data is available in session storage
-    const userData = sessionStorage.getItem("user");
-    if (userData && userData !== "undefined" && userData !== "null" && userData !== "{}") {
-      try {
-        // Parse the user data from JSON format stored in session storage
-        const user = JSON.parse(userData);
-        if (user && typeof user === 'object') {
-          dispatch({ type: LOAD_USER_SUCCESS, payload: user });
-          return;
-        }
-      } catch (parseError) {
-        // If parsing fails, clear the invalid data
-        sessionStorage.removeItem("user");
-      }
-    }
-
-    // If user data is not available in session storage or invalid, make a backend API call
+    // Make API call to check if user is authenticated
     try {
       const { data } = await axios.get("api/v1/profile", { withCredentials: true });
 
       dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
-
-      // Save the user data to session storage for future use
-      sessionStorage.setItem("user", JSON.stringify(data.user));
     } catch (apiError) {
-      // If API call fails, dispatch failure
+      // If API call fails (user not authenticated), dispatch failure
       dispatch({ type: LOAD_USER_FAIL, payload: apiError.response?.data?.message || apiError.message });
     }
   } catch (error) {

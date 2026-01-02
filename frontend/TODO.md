@@ -1,24 +1,31 @@
-# TODO: Fix Login/Signup 405 Error on Vercel
+# TODO: Fixed Login/Signup Issues on Vercel
 
-## Issue
-- Login and signup work locally but fail on Vercel with "Request failed with status code 405"
-- Console shows "Failed to load resource: the server responded with a status of 405 ()"
-- 405 Method Not Allowed indicates the HTTP method is not supported for the requested resource
+## Issues Resolved
+- ✅ **405 Error**: Login and signup failing with "Request failed with status code 405"
+- ✅ **Automatic Login**: Website automatically logging users in on page load
 
-## Root Cause
-- Vercel configuration issue: vercel.json had a typo ("frotend" instead of "frontend")
-- All requests were being routed to backend/server.js, causing static files and API routing problems
-- API routes weren't properly configured for Vercel deployment
+## Root Causes & Fixes
 
-## Plan
-1. Fix vercel.json configuration
-2. Use routes instead of rewrites to properly handle API and static file serving
-3. Route /api/* requests to backend, others to frontend build
-4. Test deployment on Vercel
+### 405 Error
+- **Cause**: Vercel configuration issues - typo in vercel.json ("frotend" instead of "frontend") and improper routing
+- **Fix**: Updated vercel.json to use proper routes configuration, routing /api/* to backend and others to frontend build
 
-## Tasks
-- [x] Fix typo in vercel.json ("frotend" -> "frontend")
-- [x] Update routing configuration to use routes instead of rewrites
-- [x] Configure API routes to go to backend, static files to frontend
+### Automatic Login Issue
+- **Cause**: load_UserProfile action was automatically loading user data from sessionStorage on app mount
+- **Fix**: Modified load_UserProfile to only check authentication via API call, not sessionStorage
+
+### HashRouter Issue
+- **Cause**: Using HashRouter (#/path) instead of BrowserRouter for clean URLs
+- **Fix**: Changed to BrowserRouter for proper Vercel deployment
+
+## Changes Made
+- [x] Fixed vercel.json configuration with proper routing
+- [x] Changed HashRouter to BrowserRouter in index.js
+- [x] Modified load_UserProfile action to not auto-load from sessionStorage
+- [x] Updated ProfileModel.jsx to handle undefined user objects
+- [x] Built frontend successfully
+
+## Next Steps
 - [ ] Deploy to Vercel and test login/signup functionality
-- [ ] Verify both frontend and API work correctly
+- [ ] Verify users are not automatically logged in on page visits
+- [ ] Confirm clean URL routing works properly
