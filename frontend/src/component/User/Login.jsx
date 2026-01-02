@@ -104,6 +104,9 @@ export default function Login() {
                   ? "Please enter a valid email address"
                   : ""
               }
+              inputProps={{
+                autoComplete: "email",
+              }}
             />
 
             <TextField
@@ -114,6 +117,9 @@ export default function Login() {
               className={classes.textField}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              inputProps={{
+                autoComplete: "current-password",
+              }}
               InputProps={{
                 endAdornment: (
                   <IconButton

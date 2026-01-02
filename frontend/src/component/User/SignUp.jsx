@@ -197,6 +197,9 @@ function Signup() {
                   ? "Minimum 8 characters"
                   : ""
               }
+              inputProps={{
+                autoComplete: "new-password",
+              }}
               InputProps={{
                 endAdornment: (
                   <IconButton
@@ -221,6 +224,9 @@ function Signup() {
               className={classes.textField}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              inputProps={{
+                autoComplete: "new-password",
+              }}
             />
 
             <div className={classes.root}>
