@@ -99,7 +99,7 @@ export const load_UserProfile = () => async (dispatch) => {
 
     // Make API call to check if user is authenticated
     try {
-      const { data } = await axios.get("api/v1/profile", { withCredentials: true });
+      const { data } = await axios.get("/api/v1/me", { withCredentials: true });
 
       dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
     } catch (apiError) {
