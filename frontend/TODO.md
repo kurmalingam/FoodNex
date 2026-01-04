@@ -1,30 +1,28 @@
-# TODO
+# TODO: Debug 404 Error on Login (/api/v1/me)
 
-## Completed
-- [x] Remove auto-login on app load by removing load_UserProfile dispatch from App.js
-- [x] Remove unused imports (load_UserProfile and useDispatch) from App.js
-- [x] Fix password confidentiality by adding proper autocomplete attributes to password fields in Login and Signup forms
-- [x] Fix 405 error by correcting API endpoint from "/api/v1/profile" to "/api/v1/me" in load_UserProfile action
+## Information Gathered
+- User encounters 404 error on GET http://localhost:3000/api/v1/me after login attempt
+- Frontend proxy set to http://localhost:4000 in package.json
+- Backend route changed from /profile to /me in userRoute.js
+- Backend default port is 5000, config example suggests 4000
+- Request not being proxied, hitting frontend dev server instead
 
-## Summary
-### Auto-login Issue Fixed
-The issue was that the app was dispatching `load_UserProfile` on every app load in App.js, which would automatically log in users if they had a valid session cookie. This caused the website to appear logged in with some user on load, and clicking anywhere might have caused issues if the user state was inconsistent.
+## Plan
+- [x] Changed proxy back to production URL https://foodnex.onrender.com
+- [x] Changed frontend to call /api/v1/profile instead of /me to match deployed backend
+- [ ] Restart frontend dev server for proxy change to take effect
+- [ ] Test full login flow: login -> redirect -> load profile
 
-By removing this dispatch, the app now loads without any user authentication check on public pages. Users can still log in manually, and private routes will check authentication when accessed via PrivateRoute component.
+## Dependent Files
+- backend/config/.env (PORT setting)
+- backend/route/userRoute.js (route definition)
+- frontend/package.json (proxy setting)
+- backend/middleWare/auth.js (authentication logic)
 
-### Password Confidentiality Issue Fixed
-Browsers were showing password suggestions when entering passwords, which is a confidentiality concern. Added proper `autocomplete` attributes:
-- Login password: `autoComplete="current-password"`
-- Signup passwords: `autoComplete="new-password"`
-- Email fields: `autoComplete="email"`
-
-### API Endpoint Fix
-Fixed 405 "Method Not Allowed" error by changing the load_UserProfile API call from "/api/v1/profile" to "/api/v1/me", which is the standard endpoint for getting current user information.
-
-The changes ensure that:
-- Public pages (home, products, etc.) load without any user logged in
-- Users can optionally sign up or log in
-- Private routes still require authentication
-- Password fields no longer show suggestions, maintaining confidentiality
-- No blank screen issues on click since no auto-login happens
-- API calls work correctly without 405 errors
+## Followup Steps
+- [ ] Run backend: cd backend && npm run dev
+- [ ] Check backend console for port and startup messages
+- [ ] Run frontend: cd frontend && npm start
+- [ ] Attempt login with admin@foodnex.com / admin123
+- [ ] Monitor browser console and backend logs for errors
+- [ ] If still 404, check if backend responds to http://localhost:4000/api/v1/health
