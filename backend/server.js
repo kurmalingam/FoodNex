@@ -63,25 +63,4 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
-const PORT = process.env.PORT || 5000;
-
-const server = app.listen(PORT, () => {
-  console.log(`Server is running on PORT ${process.env.PORT || PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`Server started at: ${new Date().toISOString()}`);
-});
-
-// Unhandled Promise Rejection => server issue
-process.on("unhandledRejection", (err) => { 
-    console.error('=== UNHANDLED PROMISE REJECTION ===');
-    console.error('Timestamp:', new Date().toISOString());
-    console.error('Error Name:', err.name);
-    console.error('Error Message:', err.message);
-    console.error('Stack Trace:', err.stack);
-    console.error('====================================');
-    console.log(`Shutting down the server due to Unhandled Promise Rejection`);
-    // if there any issue occurs eg : broken host link eg : then return msg and server will close
-    server.close(() => {
-        process.exit(1);
-    })
-})
+module.exports = app;
