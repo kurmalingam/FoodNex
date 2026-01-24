@@ -29,8 +29,6 @@ function UpdateProfile() {
   const [isValidName, setIsValidEName] = useState(true);
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("");
-  const [alertMessage, setAlertMessage] = useState("");
-  const [alertSeverity, setAlertSeverity] = useState("error");
 
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
@@ -82,14 +80,10 @@ function UpdateProfile() {
     }
 
     if (error) {
-      setAlertMessage(error);
-      setAlertSeverity("error");
       dispatch(clearErrors());
     }
     // isUpadted is nothing But success message from response. once user updated then pop the message and show profile data
     if (isUpdated) {
-      setAlertMessage("Profile Updated Successfully");
-      setAlertSeverity("success");
       // now get user New data from backend
       dispatch({
         type: UPDATE_PROFILE_RESET,

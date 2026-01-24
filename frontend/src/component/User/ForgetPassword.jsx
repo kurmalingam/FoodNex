@@ -4,7 +4,6 @@ import { TextField, Button, Typography, Avatar } from "@mui/material";
 import useStyles from "./LoginFormStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { forgetPassword, clearErrors } from "../../actions/userAction";
-import { useAlert } from "../AlertContext";
 import MetaData from "../layouts/MataData/MataData";
 import Loader from "../layouts/loader/Loader";
 
@@ -21,8 +20,6 @@ export default function ForgetPassowrd() {
   const [email, setEmail] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isDone, setIsDone] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-  const [alertSeverity, setAlertSeverity] = useState("success");
 
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
@@ -54,7 +51,7 @@ export default function ForgetPassowrd() {
       alert.success(message);
       setEmail("");
     }
-  }, [dispatch, error, alert, message, loading]);
+  }, [dispatch, error, message, loading]);
 
   const isSignInDisabled = !(email && isValidEmail);
 

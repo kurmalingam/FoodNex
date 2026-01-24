@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Avatar, Button, Typography, Alert } from "@mui/material";
+import React, { useEffect } from "react";
+import { Avatar, Button, Typography } from "@mui/material";
 import { ExitToApp as LogoutIcon, Edit as EditIcon, Lock as LockIcon, ShoppingCart as OrdersIcon } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import "./Profile.css";

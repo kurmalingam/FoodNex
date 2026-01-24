@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./ProductList.css";
 import { DataGrid } from "@mui/x-data-grid";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   clearErrors,
-//   getAdminProducts,
-//   deleteProduct,
-// } from "../../actions/productAction";
-import { Link, useHistory } from "react-router-dom";
-// import { useAlert } from "react-alert";
+import { Link} from "react-router-dom";
 
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
 import MetaData from "../layouts/MataData/MataData";
-import Loader from "../layouts/loader/Loader";
 import Sidebar from "./Siderbar";
 import Navbar from "./Navbar";
-// import { DELETE_PRODUCT_RESET } from "../../constants/productsConstatns";
 import staticProducts from "../../constants/staticProducts";
 
 function ProductList() {

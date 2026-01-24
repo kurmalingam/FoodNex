@@ -1,28 +1,11 @@
-# TODO: Debug 404 Error on Login (/api/v1/me)
+# TODO: Remove Unused Imports and Variables
 
-## Information Gathered
-- User encounters 404 error on GET http://localhost:3000/api/v1/me after login attempt
-- Frontend proxy set to http://localhost:4000 in package.json
-- Backend route changed from /profile to /me in userRoute.js
-- Backend default port is 5000, config example suggests 4000
-- Request not being proxied, hitting frontend dev server instead
-
-## Plan
-- [x] Changed proxy back to production URL https://foodnex.onrender.com
-- [x] Changed frontend to call /api/v1/profile instead of /me to match deployed backend
-- [ ] Restart frontend dev server for proxy change to take effect
-- [ ] Test full login flow: login -> redirect -> load profile
-
-## Dependent Files
-- backend/config/.env (PORT setting)
-- backend/route/userRoute.js (route definition)
-- frontend/package.json (proxy setting)
-- backend/middleWare/auth.js (authentication logic)
-
-## Followup Steps
-- [ ] Run backend: cd backend && npm run dev
-- [ ] Check backend console for port and startup messages
-- [ ] Run frontend: cd frontend && npm start
-- [ ] Attempt login with admin@foodnex.com / admin123
-- [ ] Monitor browser console and backend logs for errors
-- [ ] If still 404, check if backend responds to http://localhost:4000/api/v1/health
+- [x] src/App.js: Remove axios, Stripe imports, Payment import, stripeApiKey state, useDispatch, dispatch
+- [x] src/component/Admin/Navbar.jsx: No changes needed (imports not present)
+- [x] src/component/Admin/ProductList.jsx: Remove useHistory, DeleteIcon, Loader imports
+- [x] src/component/Cart/CartItem.jsx: Remove grams variable
+- [x] src/component/Product/ProductDetails.jsx: Remove Alert import
+- [x] src/component/Product/Products.jsx: Remove useSelector, useDispatch, Loader, clearErrors, getProduct, dispatch, alert
+- [x] src/component/User/ForgetPassword.jsx: Remove alertMessage, alertSeverity states; update useEffect
+- [x] src/component/User/Profile.jsx: Remove useState, Alert imports
+- [x] src/component/User/UpdateProfile.jsx: Remove alertMessage, alertSeverity states

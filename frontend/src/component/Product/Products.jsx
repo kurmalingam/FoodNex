@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Products.css";
-import { useDispatch, useSelector } from "react-redux";
-import Loader from "../layouts/loader/Loader";
-import { useAlert } from "../AlertContext";
 import { useRouteMatch } from "react-router-dom";
 import MetaData from "../layouts/MataData/MataData";
-import { clearErrors, getProduct } from "../../actions/productAction";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
 import Slider from "@mui/material/Slider";
@@ -33,8 +29,6 @@ const categories = [
 function Products() {
   const match = useRouteMatch();
   let keyword = match.params.keyword;
-  const dispatch = useDispatch();
-  const alert = useAlert();
 
   const [allProducts, setAllProducts] = useState(staticProducts);
   const [products, setProducts] = useState([]);

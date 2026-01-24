@@ -215,7 +215,6 @@ function CartItem({
 
   /// calculate price without discount
 
-  const grams = item.quantity * 50;
   const num100 = Math.floor(item.quantity / 2);
   const num50 = item.quantity % 2;
   let total = num100 * (item.price100 || item.price * 2) + num50 * (item.price50 || item.price);

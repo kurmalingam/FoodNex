@@ -1,17 +1,11 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useEffect, Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
-import axios from "axios";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 import CricketBallLoader from "./component/layouts/loader/Loader";
 import PrivateRoute from "./component/Route/PrivateRoute";
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import "./App.css";
 
 import Header from "./component/layouts/Header1.jsx/Header";
-import Payment from "./component/Cart/Payment";
 import Home from "./component/Home/Home";
 import Services from "./Terms&Condtions/Service";
 import Footer from "./component/layouts/Footer/Footer";
@@ -55,9 +49,6 @@ const LazyProductReviews = React.lazy(() =>
 );
 
 function App() {
-  const [stripeApiKey, setStripeApiKey] = useState("");
-
-  const dispatch = useDispatch();
 
   // Stripe payment is disabled for now
   // async function getStripeApiKey() {
