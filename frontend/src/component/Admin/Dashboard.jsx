@@ -14,7 +14,7 @@ import { getAllUsers } from "../../actions/userAction";
 import Navbar from "./Navbar";
 import Sidebar from "./Siderbar";
 import { useHistory } from "react-router-dom";
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
 import ProductImg from "../../Image/admin/products.png";
 import ordersImg from "../../Image/admin/order.png";

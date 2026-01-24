@@ -165,6 +165,141 @@ forgotPasswordLink: {
   },
 },
 
+  uploadAvatarText: {
+    fontSize: theme.typography.size.sm,
+    fontWeight: theme.typography.weight.medium,
+  },
+
+  /* Admin Layout Styles */
+  updateProduct: {
+    display: "flex",
+    height: "100vh",
+  },
+
+  firstBox1: {
+    width: "20%",
+    backgroundColor: theme.colors.neutral.white,
+    boxShadow: theme.shadows.md,
+  },
+
+  toggleBox1: {
+    width: "5%",
+    backgroundColor: theme.colors.neutral.white,
+    boxShadow: theme.shadows.md,
+  },
+
+  secondBox1: {
+    width: "80%",
+    backgroundColor: theme.colors.neutral.offWhite,
+    overflowY: "auto",
+  },
+
+  navBar1: {
+    height: "70px",
+    backgroundColor: theme.colors.neutral.white,
+    boxShadow: theme.shadows.sm,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: `0 ${theme.spacing.lg}`,
+  },
+
+  formContainer2: {
+    padding: theme.spacing.xl,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    minHeight: "calc(100vh - 70px)",
+  },
+
+  form2: {
+    width: "600px",
+    borderRadius: theme.borderRadius.lg,
+    padding: theme.spacing.xl,
+    boxShadow: theme.shadows.card,
+    backgroundColor: theme.colors.neutral.white,
+  },
+
+  nameInput: {
+    marginBottom: theme.spacing.lg,
+  },
+
+  passwordInput: {
+    marginBottom: theme.spacing.lg,
+  },
+
+  selectOption: {
+    marginBottom: theme.spacing.lg,
+  },
+
+  formControl: {
+    width: "100%",
+  },
+
+  select: {
+    "& .MuiOutlinedInput-root": {
+      borderRadius: theme.borderRadius.base,
+      "&:hover fieldset": {
+        borderColor: theme.colors.primary.main,
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: theme.colors.primary.main,
+        borderWidth: "2px",
+      },
+    },
+  },
+
+  menu: {
+    "& .MuiPaper-root": {
+      borderRadius: theme.borderRadius.base,
+      boxShadow: theme.shadows.md,
+    },
+  },
+
+  labelText: {
+    fontSize: theme.typography.size.sm,
+    color: theme.colors.neutral.gray,
+    marginBottom: theme.spacing.sm,
+  },
+
+  descriptionInput: {
+    marginBottom: theme.spacing.lg,
+    "& .MuiOutlinedInput-root": {
+      borderRadius: theme.borderRadius.base,
+      "&:hover fieldset": {
+        borderColor: theme.colors.primary.main,
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: theme.colors.primary.main,
+        borderWidth: "2px",
+      },
+    },
+  },
+
+  descriptionIcon: {
+    color: theme.colors.neutral.gray,
+  },
+
+  imgIcon: {
+    marginRight: theme.spacing.md,
+    color: theme.colors.primary.main,
+  },
+
+  imageArea: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: theme.spacing.md,
+    marginTop: theme.spacing.lg,
+  },
+
+  image: {
+    width: "100px",
+    height: "100px",
+    objectFit: "cover",
+    borderRadius: theme.borderRadius.base,
+    border: `1px solid ${theme.colors.neutral.lightGray}`,
+  },
+
 }));
 
 export default useStyles;

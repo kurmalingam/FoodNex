@@ -1,8 +1,6 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
   Switch,
-  
 } from "react-router-dom";
 import Dashboard from "../component/Admin/Dashboard";
 import ProductList from "../component/Admin/ProductList";
@@ -16,10 +14,9 @@ import ProductReviews from "../component/Admin/ProductReviews";
 import PrivateRoute from "../component/Route/PrivateRoute";
 
 const Admin = () => {
-     
+
     return (
-      
-        <Router>
+
             <Switch>
              <PrivateRoute
             isAdmin={true}
@@ -83,8 +80,7 @@ const Admin = () => {
             component={UpdateUser}
           />
             </Switch>
-        </Router>
-    
+
     );
     }
 export default Admin;

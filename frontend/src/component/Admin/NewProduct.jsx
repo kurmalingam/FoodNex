@@ -330,7 +330,6 @@ function NewProduct() {
                     <label htmlFor="avatar-input">
                       <Button
                         variant="contained"
-                        color="default"
                         className={classes.uploadAvatarButton}
                         startIcon={
                           <CloudUploadIcon

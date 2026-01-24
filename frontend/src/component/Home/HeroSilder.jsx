@@ -92,24 +92,31 @@ const useStyles = makeStyles((theme) => ({
   productButton: {
     backgroundColor: colors.primary.main,
     color: colors.neutral.white,
-    border: "none",
+    border: `2px solid ${colors.primary.main}`,
     borderRadius: "50px",
-    padding: theme.spacing(1.5, 5),
+    padding: theme.spacing(2, 6),
     fontSize: typography.size.base,
     fontWeight: typography.weight.semiBold,
     fontFamily: typography.fontFamily.primary,
     textTransform: "uppercase",
     letterSpacing: "1px",
+    minWidth: "160px",
     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
     boxShadow: "0 4px 15px rgba(227, 6, 5, 0.4)",
     "&:hover": {
       backgroundColor: colors.primary.dark,
+      borderColor: colors.primary.dark,
       transform: "translateY(-2px)",
       boxShadow: "0 6px 20px rgba(227, 6, 5, 0.5)",
     },
+    "&:focus": {
+      outline: `2px solid ${colors.neutral.white}`,
+      outlineOffset: "2px",
+    },
     [theme.breakpoints.down("sm")]: {
-      padding: theme.spacing(1.2, 4),
+      padding: theme.spacing(1.5, 5),
       fontSize: typography.size.sm,
+      minWidth: "140px",
     },
   },
   slideImage: {
@@ -119,17 +126,24 @@ const useStyles = makeStyles((theme) => ({
     objectPosition: "center",
   },
   navButton: {
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
-    backdropFilter: "blur(10px)",
-    border: "1px solid rgba(255, 255, 255, 0.2)",
+    backgroundColor: colors.primary.main,
+    color: colors.neutral.white,
+    border: `1px solid ${colors.primary.main}`,
     borderRadius: "50%",
     width: "50px",
     height: "50px",
     minWidth: "50px",
     transition: "all 0.3s ease",
+    boxShadow: "0 2px 8px rgba(227, 6, 5, 0.3)",
     "&:hover": {
-      backgroundColor: "rgba(255, 255, 255, 0.2)",
+      backgroundColor: colors.primary.dark,
+      borderColor: colors.primary.dark,
       transform: "scale(1.1)",
+      boxShadow: "0 4px 12px rgba(227, 6, 5, 0.4)",
+    },
+    "&:focus": {
+      outline: `2px solid ${colors.neutral.white}`,
+      outlineOffset: "2px",
     },
     [theme.breakpoints.down("sm")]: {
       width: "40px",
@@ -150,12 +164,12 @@ const useStyles = makeStyles((theme) => ({
     width: "12px",
     height: "12px",
     borderRadius: "50%",
-    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    backgroundColor: colors.primary.main,
     cursor: "pointer",
     transition: "all 0.3s ease",
     border: "2px solid transparent",
     "&:hover": {
-      backgroundColor: "rgba(255, 255, 255, 0.6)",
+      backgroundColor: colors.primary.dark,
     },
   },
   indicatorActive: {
@@ -359,3 +373,4 @@ export default function HeroSlider() {
     </div>
   );
 }
+
