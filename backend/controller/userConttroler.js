@@ -71,6 +71,8 @@ exports.logoutUser = asyncWrapper(async (req, res) => {
     // curr Token has null value
     expires: new Date(Date.now()), // expires curent
     httpOnly: true,
+    sameSite: 'none',
+    secure: true,
   });
 
   res.status(200).json({

@@ -417,7 +417,7 @@ function Dashboard() {
         type: "pie",
         name: "Share",
         data: [
-          ["Out of Stock", products.length - OutOfStock],
+          ["Out of Stock", (products && products.length ? products.length - OutOfStock : 0)],
 
           {
             name: "Out of Stock",
