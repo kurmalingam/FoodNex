@@ -4,7 +4,7 @@ import { resetPassword, clearErrors } from "../../actions/userAction";
 import MetaData from "../layouts/MataData/MataData";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import Loader from "../layouts/loader/Loader";
-import { Avatar, Button, TextField, Typography, Alert } from "@mui/material";
+import { Avatar, Button, TextField, Typography} from "@mui/material";
 import LockResetIcon from "@mui/icons-material/LockReset";
 import useStyles from "./LoginFormStyle";
 import Visibility from "@mui/icons-material/Visibility";
