@@ -8,6 +8,10 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { AlertProvider } from "./component/AlertContext";
 import customTheme from "./component/theme";
+import axios from "axios";
+
+// Set axios base URL to point to Render backend
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 const theme = createTheme({
   palette: {
