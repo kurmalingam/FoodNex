@@ -1,376 +1,284 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@mui/styles";
+import React, {
+  useState,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 import Carousel from "react-material-ui-carousel";
-import Button from "@mui/material/Button";
+import {
+  Box,
+  Button,
+  Typography,
+  Skeleton,
+} from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { colors, typography } from "../theme";
 
-const useStyles = makeStyles((theme) => ({
-  heroContainer: {
-    position: "relative",
-    overflow: "hidden",
-  },
-  slide: {
-    height: "calc(100vh - 112px)",
-    minHeight: "500px",
-    maxHeight: "800px",
-    width: "100%",
-    position: "relative",
-    [theme.breakpoints.down("sm")]: {
-      height: "70vh",
-      minHeight: "400px",
-    },
-  },
-  slideOverlay: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%)",
-    zIndex: 1,
-  },
-  slideContent: {
-    position: "absolute",
-    top: "50%",
-    left: "8%",
-    transform: "translateY(-50%)",
-    textAlign: "left",
-    color: colors.neutral.white,
-    zIndex: 2,
-    maxWidth: "600px",
-    [theme.breakpoints.down("sm")]: {
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      textAlign: "center",
-      padding: "0 20px",
-      maxWidth: "90%",
-    },
-  },
-  tagline: {
-    fontSize: typography.size.sm,
-    fontFamily: typography.fontFamily.primary,
-    fontWeight: typography.weight.semiBold,
-    color: colors.primary.main,
-    textTransform: "uppercase",
-    letterSpacing: "3px",
-    marginBottom: theme.spacing(2),
-    [theme.breakpoints.down("sm")]: {
-      fontSize: typography.size.xs,
-      letterSpacing: "2px",
-    },
-  },
-  quote: {
-    fontSize: typography.size["4xl"],
-    fontFamily: typography.fontFamily.primary,
-    fontWeight: typography.weight.extraBold,
-    lineHeight: typography.lineHeight.tight,
-    marginBottom: theme.spacing(2),
-    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
-    [theme.breakpoints.down("md")]: {
-      fontSize: typography.size["3xl"],
-    },
-    [theme.breakpoints.down("sm")]: {
-      fontSize: typography.size["2xl"],
-    },
-  },
-  saleText: {
-    fontSize: typography.size.lg,
-    fontFamily: typography.fontFamily.secondary,
-    fontWeight: typography.weight.regular,
-    opacity: 0.9,
-    marginBottom: theme.spacing(4),
-    lineHeight: typography.lineHeight.relaxed,
-    [theme.breakpoints.down("sm")]: {
-      fontSize: typography.size.base,
-      marginBottom: theme.spacing(3),
-    },
-  },
-  productButton: {
-    backgroundColor: colors.primary.main,
-    color: colors.neutral.white,
-    border: `2px solid ${colors.primary.main}`,
-    borderRadius: "50px",
-    padding: theme.spacing(2, 6),
-    fontSize: typography.size.base,
-    fontWeight: typography.weight.semiBold,
-    fontFamily: typography.fontFamily.primary,
-    textTransform: "uppercase",
-    letterSpacing: "1px",
-    minWidth: "160px",
-    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-    boxShadow: "0 4px 15px rgba(227, 6, 5, 0.4)",
-    "&:hover": {
-      backgroundColor: colors.primary.dark,
-      borderColor: colors.primary.dark,
-      transform: "translateY(-2px)",
-      boxShadow: "0 6px 20px rgba(227, 6, 5, 0.5)",
-    },
-    "&:focus": {
-      outline: `2px solid ${colors.neutral.white}`,
-      outlineOffset: "2px",
-    },
-    [theme.breakpoints.down("sm")]: {
-      padding: theme.spacing(1.5, 5),
-      fontSize: typography.size.sm,
-      minWidth: "140px",
-    },
-  },
-  slideImage: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    objectPosition: "center",
-  },
-  navButton: {
-    backgroundColor: colors.primary.main,
-    color: colors.neutral.white,
-    border: `1px solid ${colors.primary.main}`,
-    borderRadius: "50%",
-    width: "50px",
-    height: "50px",
-    minWidth: "50px",
-    transition: "all 0.3s ease",
-    boxShadow: "0 2px 8px rgba(227, 6, 5, 0.3)",
-    "&:hover": {
-      backgroundColor: colors.primary.dark,
-      borderColor: colors.primary.dark,
-      transform: "scale(1.1)",
-      boxShadow: "0 4px 12px rgba(227, 6, 5, 0.4)",
-    },
-    "&:focus": {
-      outline: `2px solid ${colors.neutral.white}`,
-      outlineOffset: "2px",
-    },
-    [theme.breakpoints.down("sm")]: {
-      width: "40px",
-      height: "40px",
-      minWidth: "40px",
-    },
-  },
-  indicators: {
-    position: "absolute",
-    bottom: "30px",
-    left: "50%",
-    transform: "translateX(-50%)",
-    display: "flex",
-    gap: "12px",
-    zIndex: 3,
-  },
-  indicator: {
-    width: "12px",
-    height: "12px",
-    borderRadius: "50%",
-    backgroundColor: colors.primary.main,
-    cursor: "pointer",
-    transition: "all 0.3s ease",
-    border: "2px solid transparent",
-    "&:hover": {
-      backgroundColor: colors.primary.dark,
-    },
-  },
-  indicatorActive: {
-    backgroundColor: colors.primary.main,
-    transform: "scale(1.2)",
-    border: `2px solid ${colors.neutral.white}`,
-  },
-}));
-
-// Animation variants for hero content
-const contentVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
-};
-
-const buttonVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.4, ease: "easeOut" },
-  },
-  hover: {
-    scale: 1.05,
-    transition: { duration: 0.2 },
-  },
-  tap: {
-    scale: 0.98,
-  },
-};
-
+/* ================= SLIDES ================= */
 const slides = [
   {
     image: require("../../Image/FoodNex/slide1.png"),
-    tagline: "Premium Dry Foods",
-    quote: "Nourish Your Life",
-    saleText:
-      "Get up to 50% off on a wide range of premium dry foods and products",
-    productText: "Shop Now",
+    title: "Nourish Your Life",
+    subtitle: "Premium Dry Foods",
+    text: "Get up to 50% off on healthy dry foods",
+    btn: "Shop Now",
   },
   {
     image: require("../../Image/FoodNex/slide2.png"),
-    tagline: "Limited Time Offer",
-    quote: "Experience Quality with Our Products",
-    saleText:
-      "Don't miss out on the opportunity to upgrade your pantry with healthy dry goods",
-    productText: "Buy Now",
+    title: "Quality You Trust",
+    subtitle: "Limited Time Offer",
+    text: "Upgrade your pantry with premium products",
+    btn: "Buy Now",
   },
   {
     image: require("../../Image/FoodNex/slide3.png"),
-    tagline: "New Arrivals",
-    quote: "Discover Fresh and Healthy Options",
-    saleText: "Explore the latest additions to our dry food collection",
-    productText: "Explore",
+    title: "Fresh & Healthy",
+    subtitle: "New Arrivals",
+    text: "Explore the latest dry food collection",
+    btn: "Explore",
   },
   {
     image: require("../../Image/FoodNex/slide4.png"),
-    tagline: "Pro Collection",
-    quote: "Elevate Your Meals",
-    saleText: "Enhance your cooking with premium dry ingredients",
-    productText: "Upgrade Now",
+    title: "Elevate Your Meals",
+    subtitle: "Pro Collection",
+    text: "Enhance your cooking with premium ingredients",
+    btn: "Upgrade Now",
   },
 ];
 
-export default function HeroSlider() {
-  const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(0);
-  const [key, setKey] = useState(0);
-
-  // Reset animation key when slide changes
-  useEffect(() => {
-    setKey((prev) => prev + 1);
-  }, [activeStep]);
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => (prevActiveStep + 1) % slides.length);
-  };
-
-  const handleBack = () => {
-    setActiveStep(
-      (prevActiveStep) => (prevActiveStep - 1 + slides.length) % slides.length
-    );
-  };
+/* ================= SLIDE COMPONENT ================= */
+const Slide = memo(({ slide, isFirst }) => {
+  const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className={classes.heroContainer}>
+    <Box sx={{ height: "90vh", position: "relative" }}>
+      {/* Skeleton Loader */}
+      {!loaded && (
+        <Skeleton
+          variant="rectangular"
+          width="100%"
+          height="100%"
+          sx={{ position: "absolute", inset: 0 }}
+        />
+      )}
+
+      {/* Image */}
+      <Box
+        component="img"
+        src={slide.image}
+        alt={slide.title}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        sx={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: loaded ? "block" : "none",
+        }}
+      />
+
+      {/* Overlay */}
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          background: "rgba(0,0,0,0.55)",
+        }}
+      />
+
+      {/* Content */}
+      <AnimatePresence>
+        <Box
+          component={motion.div}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: "15%",
+            transform: "translateX(-50%)",
+            zIndex: 2,
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            px: { xs: 3, md: 10 },
+            maxWidth: 600,
+            color: "#fff",
+          }}
+        >
+          <Typography variant="overline" sx={{ letterSpacing: 3 }}>
+            {slide.subtitle}
+          </Typography>
+
+          {/* SEO: H1 only once */}
+          {isFirst ? (
+            <Typography variant="h2" component="h1" fontWeight="bold">
+              {slide.title}
+            </Typography>
+          ) : (
+            <Typography variant="h3" fontWeight="bold">
+              {slide.title}
+            </Typography>
+          )}
+
+          <Typography sx={{ my: 2 }}>{slide.text}</Typography>
+
+          <Link to="/products" style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{ borderRadius: 30, px: 4 }}
+            >
+              {slide.btn}
+            </Button>
+          </Link>
+        </Box>
+      </AnimatePresence>
+    </Box>
+  );
+});
+
+/* ================= HERO SLIDER ================= */
+export default function HeroSlider() {
+  const [index, setIndex] = useState(0);
+  const [inView, setInView] = useState(true);
+  const sliderRef = useRef(null);
+
+  /* 🔥 IntersectionObserver */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.4 }
+    );
+
+    if (sliderRef.current) observer.observe(sliderRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const handleNext = useCallback(
+    () => setIndex((i) => (i + 1) % slides.length),
+    []
+  );
+
+  const handlePrev = useCallback(
+    () => setIndex((i) => (i - 1 + slides.length) % slides.length),
+    []
+  );
+
+  return (
+    <Box ref={sliderRef} sx={{ position: "relative" }}>
       <Carousel
-        autoPlay={true}
-        navButtonsAlwaysVisible
-        indicators={false}
+        autoPlay={inView}
         animation="fade"
-        interval={6000}
-        timeout={800}
-        cycleNavigation={true}
-        navButtonsProps={{
-          style: {
-            backgroundColor: "transparent",
-            padding: 0,
-            margin: "0 20px",
-          },
-        }}
-        navButtonsWrapperProps={{
-          style: {
-            top: "50%",
-            transform: "translateY(-50%)",
-          },
-        }}
-        prevButton={
-          <Button className={classes.navButton} onClick={handleBack}>
-            <ArrowBackIosIcon style={{ color: "#fff", marginLeft: "8px" }} />
-          </Button>
-        }
-        nextButton={
-          <Button className={classes.navButton} onClick={handleNext}>
-            <ArrowForwardIosIcon style={{ color: "#fff" }} />
-          </Button>
-        }
-        fullHeightHover={false}
-        className={classes.slide}
-        index={activeStep}
-        onChange={(now) => setActiveStep(now)}
+        interval={5000}
+        indicators={false}
+        navButtonsAlwaysVisible={false}
+        index={index}
+        onChange={(i) => setIndex(i)}
       >
-        {slides.map((slide, index) => (
-          <div key={index} className={classes.slide}>
-            <img
-              src={slide.image}
-              alt={`Dry food product - ${slide.tagline}`}
-              className={classes.slideImage}
-            />
-            <div className={classes.slideOverlay} />
-            <AnimatePresence mode="wait">
-              {activeStep === index && (
-                <motion.div
-                  key={`content-${index}-${key}`}
-                  className={classes.slideContent}
-                  variants={contentVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden"
-                >
-                  <motion.p className={classes.tagline} variants={itemVariants}>
-                    {slide.tagline}
-                  </motion.p>
-                  <motion.h1 className={classes.quote} variants={itemVariants}>
-                    {slide.quote}
-                  </motion.h1>
-                  <motion.p className={classes.saleText} variants={itemVariants}>
-                    {slide.saleText}
-                  </motion.p>
-                  <motion.div variants={buttonVariants}>
-                    <Link to="/products" style={{ textDecoration: "none" }}>
-                      <motion.div
-                        whileHover="hover"
-                        whileTap="tap"
-                        variants={buttonVariants}
-                      >
-                        <Button className={classes.productButton}>
-                          {slide.productText}
-                        </Button>
-                      </motion.div>
-                    </Link>
-                  </motion.div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+        {slides.map((slide, i) => (
+          <Slide key={i} slide={slide} isFirst={i === 0} />
         ))}
       </Carousel>
-      
+
+      {/* Custom Navigation Buttons */}
+      <Button
+        onClick={handlePrev}
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: 20,
+          transform: "translateY(-50%)",
+          minWidth: "50px",
+          width: "50px",
+          height: "50px",
+          borderRadius: "50%",
+          backgroundColor: "rgba(227, 6, 5, 0.8)",
+          color: "#fff",
+          border: "1px solid rgba(227, 6, 5, 0.8)",
+          boxShadow: "0 2px 8px rgba(227, 6, 5, 0.3)",
+          zIndex: 20,
+          "&:hover": {
+            backgroundColor: "rgba(227, 6, 5, 1)",
+            boxShadow: "0 4px 12px rgba(227, 6, 5, 0.4)",
+          },
+          "&:focus": {
+            outline: "2px solid #fff",
+            outlineOffset: "2px",
+          },
+        }}
+        aria-label="Previous slide"
+      >
+        <ArrowBackIosIcon sx={{ fontSize: 24, marginLeft: "4px" }} />
+      </Button>
+
+      <Button
+        onClick={handleNext}
+        sx={{
+          position: "absolute",
+          top: "50%",
+          right: 20,
+          transform: "translateY(-50%)",
+          minWidth: "50px",
+          width: "50px",
+          height: "50px",
+          borderRadius: "50%",
+          backgroundColor: "rgba(227, 6, 5, 0.8)",
+          color: "#fff",
+          border: "1px solid rgba(227, 6, 5, 0.8)",
+          boxShadow: "0 2px 8px rgba(227, 6, 5, 0.3)",
+          zIndex: 20,
+          "&:hover": {
+            backgroundColor: "rgba(227, 6, 5, 1)",
+            boxShadow: "0 4px 12px rgba(227, 6, 5, 0.4)",
+          },
+          "&:focus": {
+            outline: "2px solid #fff",
+            outlineOffset: "2px",
+          },
+        }}
+        aria-label="Next slide"
+      >
+        <ArrowForwardIosIcon sx={{ fontSize: 24 }} />
+      </Button>
+
       {/* Custom Indicators */}
-      <div className={classes.indicators}>
-        {slides.map((_, index) => (
-          <motion.div
-            key={index}
-            className={`${classes.indicator} ${
-              activeStep === index ? classes.indicatorActive : ""
-            }`}
-            onClick={() => setActiveStep(index)}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: 30,
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          gap: 1.5,
+          zIndex: 10,
+        }}
+      >
+        {slides.map((_, i) => (
+          <Box
+            key={i}
+            component={motion.div}
+            whileHover={{ scale: 1.3 }}
+            onClick={() => setIndex(i)}
+            sx={{
+              width: 12,
+              height: 12,
+              borderRadius: "50%",
+              cursor: "pointer",
+              backgroundColor:
+                index === i ? "#fff" : "rgba(255,255,255,0.5)",
+            }}
           />
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 

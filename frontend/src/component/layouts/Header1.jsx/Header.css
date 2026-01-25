@@ -192,25 +192,39 @@ list-style: none;
 }
 
 @media (max-width: 899px) {
+ .header{
+  height: 5rem;
+ }
  .headerTop{
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  height: 2rem;
  }
  .headerTopLeft{
-  margin-bottom: 3px;
+  margin-bottom: 0;
+  margin-left: 1rem;
  }
  .headerTopLeft > p {
- position: absolute;
-    top: -13px;
+ position: relative;
+    top: 0;
+    font-size: 14px;
 }
 
 .headerRetailer{
   display: none;
 }
-.headerLogin{
+.headerFlag{
   display: none;
+}
+.headerLogin{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
+.headerLogin button {
+  font-size: 12px;
+  padding: 0 8px;
 }
 
 
@@ -218,6 +232,7 @@ list-style: none;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  height: 3rem;
  }
  .headerBottom__logo{
     display: flex;
@@ -235,6 +250,11 @@ list-style: none;
  .headerBottom_navMenu{
   display: none;
  }
+ .headerBottom__logo_main{
+    height: 3rem;
+    padding-left: 10px;
+    margin-top: 0;
+}
 }
 
 
