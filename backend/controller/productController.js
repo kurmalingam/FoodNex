@@ -3,10 +3,11 @@ const ErrorHandler = require("../utils/errorHandler");
 const asyncWrapper = require("../middleWare/asyncWrapper");
 const ApiFeatures = require("../utils/apiFeatures");
 const cloudinary = require("cloudinary");
+const validateImage = require("../utils/imageValidator");
 
 // >>>>>>>>>>>>>>>>>>>>> createProduct Admin route  >>>>>>>>>>>>>>>>>>>>>>>>
 exports.createProduct = asyncWrapper(async (req, res) => {
-  let images = []; 
+  let images = [];
 
   if (req.body.images) {
     if (typeof req.body.images === "string") {
@@ -15,17 +16,21 @@ exports.createProduct = asyncWrapper(async (req, res) => {
       images = req.body.images;
     }
 
+    // Validate images before uploading
+    for (const img of images) {
+      validateImage(img);
+    }
+
     const imagesLinks = [];
 
-    // Split images into chunks due to cloudinary upload limits only 3 images can be uploaded at a time so we are splitting into chunks and uploading them separately eg: 9 images will be split into 3 chunks and uploaded separately
+    // Split images into chunks due to cloudinary upload limits
     const chunkSize = 3;
     const imageChunks = [];
     while (images.length > 0) {
       imageChunks.push(images.splice(0, chunkSize));
     }
 
-
-    // Upload images in separate requests. for loop will run 3 times if there are 9 images to upload each time uploading 3 images at a time
+    // Upload images in separate requests
     for (let chunk of imageChunks) {
       const uploadPromises = chunk.map((img) =>
         cloudinary.v2.uploader.upload(img, {
@@ -33,10 +38,9 @@ exports.createProduct = asyncWrapper(async (req, res) => {
         })
       );
 
-      
-      const results = await Promise.all(uploadPromises); // wait for all the promises to resolve and store the results in results array eg: [{}, {}, {}] 3 images uploaded successfully and their details are stored in results array
+      const results = await Promise.all(uploadPromises);
 
-      for (let result of results) { 
+      for (let result of results) {
         imagesLinks.push({
           product_id: result.public_id,
           url: result.secure_url,
@@ -87,11 +91,19 @@ exports.getAllProducts = asyncWrapper(async (req, res) => {
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get all product admin route>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 exports.getAllProductsAdmin = asyncWrapper(async (req, res) => {
-  const products = await ProductModel.find();
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
 
-  res.status(201).json({  
+  const products = await ProductModel.find().skip(skip).limit(limit);
+  const productsCount = await ProductModel.countDocuments();
+
+  res.status(200).json({
     success: true,
     products,
+    productsCount,
+    page,
+    pages: Math.ceil(productsCount / limit),
   });
 });
 
@@ -115,6 +127,11 @@ exports.updateProduct = asyncWrapper(async (req, res, next) => {
   }
 
   if (images !== undefined) {
+    // Validate images before uploading
+    for (const img of images) {
+      validateImage(img);
+    }
+
     // Deleting Images From Cloudinary
     for (let i = 0; i < product.images.length; i++) {
       await cloudinary.v2.uploader.destroy(product.images[i].product_id);
@@ -255,37 +272,43 @@ exports.getProductReviews = asyncWrapper(async (req, res, next) => {
 
 //>>>>>>>>>>>>>>>>>>>>>> delete review >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 exports.deleteReview = asyncWrapper(async (req, res, next) => {
-  // we have review id and product id here in req object
-  // find thr product with product id
-
   const product = await ProductModel.findById(req.query.productId);
 
   if (!product) {
-    return next(new ErrorHandler("Product not found", 404)); 
+    return next(new ErrorHandler("Product not found", 404));
   }
 
-  // check if ther any review avalible with given reviwe id. then filter the review array store inside reviews without that review
-  const reviews = product.reviews.filter(
-    (rev) => { return rev._id.toString() !== req.query.id.toString()}
+  const review = product.reviews.find(
+    (rev) => rev._id.toString() === req.query.id.toString()
   );
-  // once review filterd then update new rating from prdoduct review
+
+  if (!review) {
+    return next(new ErrorHandler("Review not found", 404));
+  }
+
+  // Check if the user is the owner of the review or an admin
+  if (review.userId.toString() !== req.user.id.toString() && req.user.role !== "admin") {
+    return next(new ErrorHandler("You are not authorized to delete this review", 403));
+  }
+
+  const reviews = product.reviews.filter(
+    (rev) => rev._id.toString() !== req.query.id.toString()
+  );
+
   let avg = 0;
   reviews.forEach((rev) => {
-   
     avg += rev.ratings;
   });
 
-
-  
   let ratings = 0;
   if (reviews.length === 0) {
     ratings = 0;
   } else {
     ratings = avg / reviews.length;
   }
-  // also set  numOfReviews in product
+
   const numOfReviews = reviews.length;
-  // now update the product schema with these values
+
   await ProductModel.findByIdAndUpdate(
     req.query.productId,
     {

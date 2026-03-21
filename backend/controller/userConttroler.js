@@ -5,6 +5,7 @@ const sendJWtToken = require("../utils/JwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 const cloudinary = require("cloudinary");
+const validateImage = require("../utils/imageValidator");
 
 
 // signUp controller>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -15,6 +16,7 @@ exports.registerUser = asyncWrapper(async (req, res) => {
 
   // Check if avatar is provided and upload to Cloudinary
   if (req.body.avatar && req.body.avatar !== "") {
+    validateImage(req.body.avatar);
     const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
       folder: "Avatar", // this folder cloudainry data base manage by us
       width: 150,
@@ -40,6 +42,8 @@ exports.registerUser = asyncWrapper(async (req, res) => {
 // Login User >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 exports.loginUser = asyncWrapper(async (req, res, next) => {
   const { email, password } = req.body;
+  const MAX_LOGIN_ATTEMPTS = 5;
+  const LOCKOUT_TIME = 15 * 60 * 1000; // 15 minutes
 
   // checking if user has given password and email both
   if (!email || !password) {
@@ -52,13 +56,39 @@ exports.loginUser = asyncWrapper(async (req, res, next) => {
     return next(new ErrorHandler("Invalid email or password", 401));
   }
 
+  // Check if account is locked
+  if (user.lockUntil && user.lockUntil > Date.now()) {
+    return next(
+      new ErrorHandler(
+        `Account locked. Please try again after ${Math.ceil(
+          (user.lockUntil - Date.now()) / 60000
+        )} minutes.`,
+        403
+      )
+    );
+  }
+
   // comparePassword method defind in useSchema by use . it will comapre this password to hashfrom password at database
   const isPasswordMatched = await user.comparePassword(password);
 
   // when password not mathced with original hashed password
   if (!isPasswordMatched) {
+    user.failedLoginAttempts += 1;
+    if (user.failedLoginAttempts >= MAX_LOGIN_ATTEMPTS) {
+      user.lockUntil = Date.now() + LOCKOUT_TIME;
+      await user.save();
+      return next(
+        new ErrorHandler("Account locked due to too many failed login attempts.", 403)
+      );
+    }
+    await user.save();
     return next(new ErrorHandler("Invalid email or password", 401));
   }
+
+  // Reset failed login attempts on successful login
+  user.failedLoginAttempts = 0;
+  user.lockUntil = null;
+  await user.save();
 
   sendJWtToken(user, 200, res);
 });
@@ -85,50 +115,40 @@ exports.logoutUser = asyncWrapper(async (req, res) => {
 exports.forgotPassword = asyncWrapper(async (req, res, next) => {
   const user = await userModel.findOne({ email: req.body.email });
 
-  // when user with this email not found
-  if (!user) {
-    return next(new ErrorHandler("User not found", 404));
-  }
-
-  // Get ResetPassword Token
-  const resetToken = user.getResetPasswordToken(); // we made this method into userModel for hash resetToken
-  //when we call this metod  getResetPasswordToken  . so in userModel resetPasswordToken has reset token added and resetPasswordExprie also exprie value added but not saved to data base
-  await user.save({ validateBeforeSave: false }); // now save
-
-  let resetPasswordUrl = "";
-
-  const isLocal = req.hostname === "localhost" || req.hostname === "127.0.0.1";
-  if (isLocal) {
-    resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
-  } else {
-    resetPasswordUrl = `${req.protocol}://${req.get(
-      "host"
-    )}/password/reset/${resetToken}`;
-  }
-
-  const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
-
-  try {
-    await sendEmail({
-      // sendEmail is method writen by us in utils folder.
-      email: user.email,
-      subject: `Ecommerce Password Recovery`,
-      message,
-    });
-
-    res.status(200).json({
-      success: true,
-      message: `Email sent to ${user.email} successfully`,
-    });
-  } catch (error) {
-    // if there any Error then  user.resetPasswordToken and user.resetPasswordExpire has value saved already then undefined both od them for fresh value if user want to try again
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpire = undefined;
-
+  if (user) {
+    // Get ResetPassword Token
+    const resetToken = user.getResetPasswordToken();
     await user.save({ validateBeforeSave: false });
 
-    return next(new ErrorHandler(error.message, 500));
+    let resetPasswordUrl = "";
+    const isLocal = req.hostname === "localhost" || req.hostname === "127.0.0.1";
+    if (isLocal) {
+      resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+    } else {
+      resetPasswordUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetToken}`;
+    }
+
+    const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
+
+    try {
+      await sendEmail({
+        email: user.email,
+        subject: `Ecommerce Password Recovery`,
+        message,
+      });
+    } catch (error) {
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpire = undefined;
+      await user.save({ validateBeforeSave: false });
+      // Log the error but do not expose it to the user
+      console.error("Error sending password reset email:", error);
+    }
   }
+
+  res.status(200).json({
+    success: true,
+    message: "If an account with this email exists, a password reset link has been sent.",
+  });
 });
 
 //>>>>>>>>>>>>>>> reset and update password :
@@ -216,6 +236,7 @@ exports.updateProfile = asyncWrapper(async (req, res, next) => {
 
   // if avatar is provided (not empty string and not undefined)
   if (req.body.avatar && req.body.avatar !== "") {
+    validateImage(req.body.avatar);
     const user = await userModel.findById(req.user.id);
 
     // Only delete old image if user has an existing avatar

@@ -5,12 +5,6 @@ const ErrorHandler = require("../utils/errorHandler");
 exports.processPayment = asyncWrapper(async (req, res, next) => {
   const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-  console.log('=== PAYMENT PROCESSING ===');
-  console.log('Timestamp:', new Date().toISOString());
-  console.log('Amount:', req.body.amount);
-  console.log('User ID:', req.user?.id);
-  console.log('==========================');
-
   // Validate payment amount
   if (!req.body.amount || req.body.amount <= 0) {
     return next(new ErrorHandler("Invalid payment amount", 400));
@@ -31,8 +25,6 @@ exports.processPayment = asyncWrapper(async (req, res, next) => {
         timestamp: new Date().toISOString()
       },
     });
-
-    console.log('Payment Intent Created:', myPayment.id);
 
     res.status(200).json({ 
       success: true, 
