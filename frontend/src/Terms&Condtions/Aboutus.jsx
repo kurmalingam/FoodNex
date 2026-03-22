@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, Container, Grid, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import MetaData from "../component/layouts/MataData/MataData";
-import TermsImage from "../Image/about/tc.jpg";
+import { images } from "../constants/images.js";
 import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   about_us: {
@@ -108,7 +108,7 @@ const About_UsPage = () => {
           <Grid container spacing={4} justifyContent="center">
             <Grid item xs={12} sm={6}>
               <img
-                src={TermsImage}
+                src={images.tc}
                 alt="FoodNex"
                 className={classes.image_about}
               />

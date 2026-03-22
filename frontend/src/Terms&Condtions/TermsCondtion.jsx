@@ -1,13 +1,13 @@
 import React from "react";
 import "./TermsAndCondtion.css";
 import MetaData from "../component/layouts/MataData/MataData";
-import TermsImage from "../Image/about/tc.jpg";
+import { images } from "../constants/images.js";
 const TermsAndConditionsPage = () => {
   return (
     <div className="terms-container">
       <MetaData title="Terms and Conditions" />
       <img
-        src={TermsImage}
+        src={images.tc}
         alt="Terms and Conditions"
         className="terms-image"
       />
@@ -15,11 +15,7 @@ const TermsAndConditionsPage = () => {
         <h1 className="terms-title">TERMS AND CONDITIONS</h1>
       </div>
       <div className="terms-content">
-        <p>
-          Thank you for shopping with CricketWeapon! We appreciate your business
-          and your interest in our cricket equipment. We want to make sure you
-          have a good experience purchasing from our website.
-        </p>
+        <p>\n          Thank you for shopping with FoodNex! We appreciate your business\n          and your interest in our food products. We want to make sure you\n          have a good experience purchasing from our website.\n        </p>
         <p>
           By placing an order and purchasing a product from our website, you
           agree to the following terms and conditions, along with our return and

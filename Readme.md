@@ -53,3 +53,93 @@ Welcome to FoodNex, an e-commerce shopping app that provides both normal user an
 | Data Export         | Export data sets (e.g., orders, products) to CSV or Excel |
 | Product Bundles     | Create and manage product bundles                         |
 
+## Tech Stack
+
+### Backend
+```
+Node.js (>=16) + Express.js + MongoDB (Mongoose ^8)
+Auth: JWT + bcryptjs
+Payments: Stripe (^14.17.0)
+File Upload: Cloudinary + Multer
+Security: Helmet, CORS, Rate Limiting, XSS Protection
+Email: Nodemailer
+```
+
+### Frontend
+```
+React (^18) + Redux + Material-UI (^5.14)
+Charts: Highcharts
+Animations: Framer Motion
+Routing: react-router-dom (^5 - upgrade recommended)
+Payments: Stripe Elements (disabled)
+```
+
+### Root Monorepo
+```
+Scripts: npm run dev (concurrent), npm start
+Shared: bcryptjs, cloudinary, stripe
+```
+
+## Project Structure
+```
+FoodNex/
+├── backend/          # API: models, controllers, routes, middleware
+├── frontend/src/     # React: components (Admin/Cart/Home/Product/User), actions, reducers
+├── package.json      # Monorepo
+├── vercel.json       # Deployment
+└── TODO.md           # Tasks
+```
+
+## Quick Start
+
+1. **Clone & Install**:
+   ```
+   git clone <repo>
+   cd FoodNex
+   npm install
+   cd backend && npm install
+   cd ../frontend && npm install
+   ```
+
+2. **Environment** (backend/config/.env):
+   ```
+   MONGO_URI=your_mongo_connection
+   JWT_SECRET=your_secret
+   STRIPE_SECRET_KEY=sk_test_...
+   CLOUDINARY_NAME=...
+   ```
+
+3. **Seed Data**:
+   ```
+   cd backend
+   npm run seed:admin
+   npm run seed:products
+   ```
+
+4. **Run**:
+   ```
+   npm run dev  # Backend:5000 + Frontend:3000
+   ```
+
+## API Endpoints (/api/v1)
+- Auth: POST /user/register, /login, /password/forgot
+- Products: GET /product, POST /admin/product/new
+- Orders: POST /order/new, GET /orders/myOrders
+- Health: GET /health
+
+## Deployment
+- **Vercel**: Auto-deploys frontend/backend (vercel.json)
+- **Backend**: Railway/Render + MongoDB Atlas
+- Production serves frontend build from backend
+
+## Known Issues & Improvements
+- ❌ react-router-dom v5 (upgrade to v6)
+- ❌ Typos: userConttroler.js → userController.js
+- ⚠️ Stripe disabled (add keys)
+- ✅ Add tests (Jest ready)
+
+## Contributing
+1. Fork & PR
+2. Follow existing patterns
+3. Update TODO.md
+

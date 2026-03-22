@@ -749,7 +749,7 @@ const PaymentComponent = () => {
 
               <div className="paymentLogoImg">
                 <img
-                  src={require("../../Image/cart/cart_img.png")}
+                  src={require("../../constants/images.js").cartImg}
                   alt="payemnt-icons"
                   className="paymentImg"
                 />

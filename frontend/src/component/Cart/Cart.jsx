@@ -191,10 +191,10 @@ const Cart = () => {
 
                 <div className="paymentLogoImg">
                   <img
-                    src={require("../../Image/cart/cart_img.png")}
-                    alt="payemnt-icons"
-                    className="paymentImg"
-                  />
+                  src={require("../../constants/images.js").cartImg}
+                  alt="payemnt-icons"
+                  className="paymentImg"
+                />
                 </div>
               </div>
             </div>

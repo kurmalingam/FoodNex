@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux";
 
+
 import ProfileModal from "./ProfileModel";
 
 function Header() {
@@ -139,7 +140,7 @@ function Header() {
           {!searchBarActive && (
             <Link to="/">
               <img
-                src={require("../../../Image/logo.png")}
+src="https://res.cloudinary.com/dhpr8x0ja/image/upload/v1729500000/foodnex/logo_foodnex.png"
                 alt="logo"
                 className="headerBottom__logo_main"
               />

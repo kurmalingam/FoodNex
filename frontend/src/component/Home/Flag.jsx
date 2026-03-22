@@ -2,10 +2,10 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import IN from "../../Image/flag/in.svg"
+import { images } from "../../constants/images.js";
 
 const countryOptions = [
-  { code: "in", label: "India", flag: IN },
+  { code: "in", label: "India", flag: images.flagIn },
   // ... add more countries here
 ];
 
@@ -81,5 +81,3 @@ const FlagSelect = ({ value = "in", onChange }) => {
 };
 
 export default FlagSelect;
-
-

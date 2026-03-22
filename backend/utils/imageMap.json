@@ -1,0 +1,134 @@
+{
+  "about/tc.jpg": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159377/FoodNex/Images/about/nhntcnuq8s6fdtfupkw9.jpg",
+    "public_id": "FoodNex/Images/about/nhntcnuq8s6fdtfupkw9"
+  },
+  "admin/order.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159379/FoodNex/Images/admin/nsvxnfgl5jrz7v8q1e9b.png",
+    "public_id": "FoodNex/Images/admin/nsvxnfgl5jrz7v8q1e9b"
+  },
+  "admin/products.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159380/FoodNex/Images/admin/blgry9u0hnwqvpfkktji.png",
+    "public_id": "FoodNex/Images/admin/blgry9u0hnwqvpfkktji"
+  },
+  "admin/user.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159381/FoodNex/Images/admin/d0di0cn68uqox4prdhia.png",
+    "public_id": "FoodNex/Images/admin/d0di0cn68uqox4prdhia"
+  },
+  "cart/cart_img.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159382/FoodNex/Images/cart/khiakibu7d2mvla4oek7.png",
+    "public_id": "FoodNex/Images/cart/khiakibu7d2mvla4oek7"
+  },
+  "flag/in.svg": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159383/FoodNex/Images/flag/xpu4v7nwp5r0g4xbvvlo.svg",
+    "public_id": "FoodNex/Images/flag/xpu4v7nwp5r0g4xbvvlo"
+  },
+  "FoodNex/slide1.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159385/FoodNex/Images/FoodNex/hmlifnotg7pq58zuelvz.png",
+    "public_id": "FoodNex/Images/FoodNex/hmlifnotg7pq58zuelvz"
+  },
+  "FoodNex/slide2.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159387/FoodNex/Images/FoodNex/xnmeegnw0sshulvgysw2.png",
+    "public_id": "FoodNex/Images/FoodNex/xnmeegnw0sshulvgysw2"
+  },
+  "FoodNex/slide3.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159388/FoodNex/Images/FoodNex/irypixufmtk8b5qy017v.png",
+    "public_id": "FoodNex/Images/FoodNex/irypixufmtk8b5qy017v"
+  },
+  "FoodNex/slide4.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159389/FoodNex/Images/FoodNex/zfnsmrxtdbpqgbm6w5nf.png",
+    "public_id": "FoodNex/Images/FoodNex/zfnsmrxtdbpqgbm6w5nf"
+  },
+  "Footer/app-store-black.svg": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159390/FoodNex/Images/Footer/jkwoth6arzrxdskekp8h.svg",
+    "public_id": "FoodNex/Images/Footer/jkwoth6arzrxdskekp8h"
+  },
+  "Footer/google-play-black.svg": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159393/FoodNex/Images/Footer/epnnocjth79dugmzw63j.svg",
+    "public_id": "FoodNex/Images/Footer/epnnocjth79dugmzw63j"
+  },
+  "Footer/logo.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159395/FoodNex/Images/Footer/kab2tiv2ukg80ghh4doh.png",
+    "public_id": "FoodNex/Images/Footer/kab2tiv2ukg80ghh4doh"
+  },
+  "Loader-svg/LoaderBlack.svg": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159396/FoodNex/Images/Loader-svg/lialzeh96g2bsqmu45ps.svg",
+    "public_id": "FoodNex/Images/Loader-svg/lialzeh96g2bsqmu45ps"
+  },
+  "Loader-svg/LoaderRed.svg": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159398/FoodNex/Images/Loader-svg/v6e6sjbi4xvgwlfg5e6y.svg",
+    "public_id": "FoodNex/Images/Loader-svg/v6e6sjbi4xvgwlfg5e6y"
+  },
+  "payment-svg/mastercard.svg": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159400/FoodNex/Images/payment-svg/p1pwf1aoxemwlzuvbiic.svg",
+    "public_id": "FoodNex/Images/payment-svg/p1pwf1aoxemwlzuvbiic"
+  },
+  "payment-svg/paytm.svg": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159402/FoodNex/Images/payment-svg/aq7fdy5ppbygracu9awb.svg",
+    "public_id": "FoodNex/Images/payment-svg/aq7fdy5ppbygracu9awb"
+  },
+  "payment-svg/visa (1).svg": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159405/FoodNex/Images/payment-svg/xm3xcclsmayfow16chts.svg",
+    "public_id": "FoodNex/Images/payment-svg/xm3xcclsmayfow16chts"
+  },
+  "products/Avarampoo soup mix.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159406/FoodNex/Images/products/avp2vuukif17dli49usw.png",
+    "public_id": "FoodNex/Images/products/avp2vuukif17dli49usw"
+  },
+  "products/banana stem soup mix powder.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159408/FoodNex/Images/products/mlwzpbhf54dqztxh1h0r.png",
+    "public_id": "FoodNex/Images/products/mlwzpbhf54dqztxh1h0r"
+  },
+  "products/GarlicRice mix.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159409/FoodNex/Images/products/kx0rcjkzljnj8byo1pnp.png",
+    "public_id": "FoodNex/Images/products/kx0rcjkzljnj8byo1pnp"
+  },
+  "products/kariveppilai powder.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159410/FoodNex/Images/products/jqjgfqduj0lt322dgacn.png",
+    "public_id": "FoodNex/Images/products/jqjgfqduj0lt322dgacn"
+  },
+  "products/Moringa powder drumstick.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159411/FoodNex/Images/products/lbgdab7pbqn4yeuywv9x.png",
+    "public_id": "FoodNex/Images/products/lbgdab7pbqn4yeuywv9x"
+  },
+  "products/Moringa soup.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159412/FoodNex/Images/products/vzdt2kqwciqiisf3gyre.png",
+    "public_id": "FoodNex/Images/products/vzdt2kqwciqiisf3gyre"
+  },
+  "products/nellikkai gooseberry rice mix.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159413/FoodNex/Images/products/oo6t9ncorhep7dj612tr.png",
+    "public_id": "FoodNex/Images/products/oo6t9ncorhep7dj612tr"
+  },
+  "products/nellikkai soup mix powder.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159414/FoodNex/Images/products/dpzhd0chniquj5jreqzy.png",
+    "public_id": "FoodNex/Images/products/dpzhd0chniquj5jreqzy"
+  },
+  "products/paruppu podi.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159415/FoodNex/Images/products/enn5vepmydmtdbbphnpk.png",
+    "public_id": "FoodNex/Images/products/enn5vepmydmtdbbphnpk"
+  },
+  "products/Pirandai veldt grape rice mix.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159416/FoodNex/Images/products/vvc1fi3pyrta34arioq8.png",
+    "public_id": "FoodNex/Images/products/vvc1fi3pyrta34arioq8"
+  },
+  "products/Pure avarampoo powder.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159418/FoodNex/Images/products/jmopjrvhffcdqtkwodta.png",
+    "public_id": "FoodNex/Images/products/jmopjrvhffcdqtkwodta"
+  },
+  "products/pure curry leaf powder.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159419/FoodNex/Images/products/hl4ef47cjmocu9yvtrit.png",
+    "public_id": "FoodNex/Images/products/hl4ef47cjmocu9yvtrit"
+  },
+  "products/Pure gooseberry powder.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159420/FoodNex/Images/products/karvuo2igtegloqu94wx.png",
+    "public_id": "FoodNex/Images/products/karvuo2igtegloqu94wx"
+  },
+  "products/Sambar Powder.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159420/FoodNex/Images/products/dd42iranvayztkvjpbec.png",
+    "public_id": "FoodNex/Images/products/dd42iranvayztkvjpbec"
+  },
+  "products/SiruKeerai rice mix.png": {
+    "url": "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159421/FoodNex/Images/products/zmjymi8nnku5ecxlaqb4.png",
+    "public_id": "FoodNex/Images/products/zmjymi8nnku5ecxlaqb4"
+  }
+}

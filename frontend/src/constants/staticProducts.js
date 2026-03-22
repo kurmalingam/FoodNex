@@ -1,18 +1,4 @@
-import img1 from '../Image/products/Moringa powder drumstick.png';
-import img2 from '../Image/products/pure curry leaf powder.png';
-import img3 from '../Image/products/Sambar Powder.png';
-import img4 from '../Image/products/SiruKeerai rice mix.png';
-import img5 from '../Image/products/GarlicRice mix.png';
-import img6 from '../Image/products/paruppu podi.png';
-import img7 from '../Image/products/Pirandai veldt grape rice mix.png';
-import img8 from '../Image/products/nellikkai gooseberry rice mix.png';
-import img9 from '../Image/products/Moringa soup.png';
-import img10 from '../Image/products/nellikkai soup mix powder.png';
-import img11 from '../Image/products/banana stem soup mix powder.png';
-import img12 from '../Image/products/Avarampoo soup mix.png';
-import img13 from '../Image/products/Pure gooseberry powder.png';
-import img14 from '../Image/products/Pure avarampoo powder.png';
-import img15 from '../Image/products/kariveppilai powder.png';
+ // Images migrated to Cloudinary - local imports removed
 
 const products = [
   // 🌿 PODI
@@ -26,7 +12,7 @@ const products = [
     price50Num: 40,
     price100Num: 60,
     stock: true,
-    images: [{ url: img1 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159411/FoodNex/Images/products/lbgdab7pbqn4yeuywv9x.png" }],
     description: "Nutritious moringa powder for idly and rice, packed with vitamins and minerals.",
   },
   {
@@ -39,7 +25,7 @@ const products = [
     price50Num: 40,
     price100Num: 60,
     stock: true,
-    images: [{ url: img2 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159419/FoodNex/Images/products/hl4ef47cjmocu9yvtrit.png" }],
     description: "Aromatic curry leaf powder perfect for enhancing the flavor of your dishes.",
   },
   {
@@ -52,7 +38,7 @@ const products = [
     price50Num: 40,
     price100Num: 60,
     stock: true,
-    images: [{ url: img3 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159420/FoodNex/Images/products/dd42iranvayztkvjpbec.png" }],
     description: "Traditional sambar powder for authentic South Indian sambar.",
   },
 
@@ -67,7 +53,7 @@ const products = [
     price50Num: 65,
     price100Num: 110,
     stock: true,
-    images: [{ url: img4 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159421/FoodNex/Images/products/zmjymi8nnku5ecxlaqb4.png" }],
     description: "Healthy spinach rice mix for a nutritious meal.",
   },
   {
@@ -80,7 +66,7 @@ const products = [
     price50Num: 50,
     price100Num: 100,
     stock: true,
-    images: [{ url: img5 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159409/FoodNex/Images/products/kx0rcjkzljnj8byo1pnp.png" }],
     description: "Garlic-infused rice mix for a flavorful twist.",
   },
   {
@@ -93,7 +79,7 @@ const products = [
     price50Num: 50,
     price100Num: 80,
     stock: true,
-    images: [{ url: img6 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159415/FoodNex/Images/products/enn5vepmydmtdbbphnpk.png" }],
     description: "Dal rice mix for a protein-rich meal.",
   },
   {
@@ -106,7 +92,7 @@ const products = [
     price50Num: 60,
     price100Num: 110,
     stock: true,
-    images: [{ url: img7 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159416/FoodNex/Images/products/vvc1fi3pyrta34arioq8.png" }],
     description: "Medicinal veldt grape rice mix for health benefits.",
   },
   {
@@ -119,7 +105,7 @@ const products = [
     price50Num: 65,
     price100Num: 110,
     stock: true,
-    images: [{ url: img8 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159413/FoodNex/Images/products/oo6t9ncorhep7dj612tr.png" }],
     description: "Gooseberry rice mix for antioxidant-rich meals.",
   },
 
@@ -132,7 +118,7 @@ const products = [
     price50: "₹85 (16 Soups)",
     price100: null,
     stock: true,
-    images: [{ url: img9 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159412/FoodNex/Images/products/vzdt2kqwciqiisf3gyre.png" }],
     description: "Moringa soup mix for 16 servings of nutritious soup.",
   },
   {
@@ -143,7 +129,7 @@ const products = [
     price50: "₹85 (13 Soups)",
     price100: null,
     stock: true,
-    images: [{ url: img10 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159414/FoodNex/Images/products/dpzhd0chniquj5jreqzy.png" }],
     description: "Gooseberry soup mix for 13 servings of healthy soup.",
   },
   {
@@ -154,7 +140,7 @@ const products = [
     price50: "₹85 (13 Soups)",
     price100: null,
     stock: true,
-    images: [{ url: img11 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159408/FoodNex/Images/products/mlwzpbhf54dqztxh1h0r.png" }],
     description: "Banana stem soup mix for 13 servings of detoxifying soup.",
   },
   {
@@ -165,7 +151,7 @@ const products = [
     price50: "₹110 (16 Soups)",
     price100: null,
     stock: true,
-    images: [{ url: img12 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159406/FoodNex/Images/products/avp2vuukif17dli49usw.png" }],
     description: "Neem flower soup mix for 16 servings of medicinal soup.",
   },
 
@@ -180,7 +166,7 @@ const products = [
     price50Num: 65,
     price100Num: 110,
     stock: true,
-    images: [{ url: img13 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159420/FoodNex/Images/products/karvuo2igtegloqu94wx.png" }],
     description: "Pure gooseberry powder for health and wellness.",
   },
   {
@@ -193,7 +179,7 @@ const products = [
     price50Num: 90,
     price100Num: 170,
     stock: true,
-    images: [{ url: img14 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159418/FoodNex/Images/products/jmopjrvhffcdqtkwodta.png" }],
     description: "Pure neem flower powder for medicinal uses.",
   },
   {
@@ -206,7 +192,7 @@ const products = [
     price50Num: 50,
     price100Num: 100,
     stock: true,
-    images: [{ url: img15 }],
+    images: [{ url: "https://res.cloudinary.com/dal84gvkm/image/upload/v1774159410/FoodNex/Images/products/jqjgfqduj0lt322dgacn.png" }],
     description: "Pure curry leaf powder for culinary and health benefits.",
   },
 ];

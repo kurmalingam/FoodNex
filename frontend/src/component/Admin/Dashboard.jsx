@@ -16,9 +16,7 @@ import Sidebar from "./Siderbar";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
-import ProductImg from "../../Image/admin/products.png";
-import ordersImg from "../../Image/admin/order.png";
-import usersImg from "../../Image/admin/user.png";
+import { images } from "../../constants/images.js";
 Highcharts3D(Highcharts);
 
 const useStyles = makeStyles((theme) => ({
@@ -469,8 +467,8 @@ function Dashboard() {
               <div className={classes.summaryCard}>
                 <div
                   className={classes.cardContainer}
-                  style={{
-                    backgroundImage: `url(${ProductImg})`,
+style={{
+                    backgroundImage: `url(${images.adminProducts})`,
                     backgroundSize: "cover",
                     transition: "transform 0.2s ease-in-out",
                     cursor: "pointer",
@@ -502,8 +500,8 @@ function Dashboard() {
 
                 <div
                   className={classes.cardContainer}
-                  style={{
-                    backgroundImage: `url(${ordersImg})`,
+style={{
+                    backgroundImage: `url(${images.adminOrder})`,
                     backgroundSize: "cover",
                     transition: "transform 0.2s ease-in-out",
                     cursor: "pointer",
@@ -534,8 +532,8 @@ function Dashboard() {
 
                 <div
                   className={classes.cardContainer}
-                  style={{
-                    backgroundImage: `url(${usersImg})`,
+style={{
+                    backgroundImage: `url(${images.adminUser})`,
                     backgroundSize: "cover",
                     transition: "transform 0.2s ease-in-out",
                     cursor: "pointer",
@@ -575,8 +573,8 @@ function Dashboard() {
 
                 <div
                   className={classes.revnueContainer}
-                  style={{
-                    backgroundImage: `url(${ProductImg})`,
+style={{
+                    backgroundImage: `url(${images.adminProducts})`,
                     backgroundSize: "cover",
                     transition: "transform 0.2s ease-in-out",
                     borderRadius: "5px",

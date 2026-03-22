@@ -20,28 +20,28 @@ import { Link } from "react-router-dom";
 /* ================= SLIDES ================= */
 const slides = [
   {
-    image: require("../../Image/FoodNex/slide1.png"),
+    image: require("../../constants/images.js").slide1,
     title: "Nourish Your Life",
     subtitle: "Premium Dry Foods",
     text: "Get up to 50% off on healthy dry foods",
     btn: "Shop Now",
   },
   {
-    image: require("../../Image/FoodNex/slide2.png"),
+    image: require("../../constants/images.js").slide2,
     title: "Quality You Trust",
     subtitle: "Limited Time Offer",
     text: "Upgrade your pantry with premium products",
     btn: "Buy Now",
   },
   {
-    image: require("../../Image/FoodNex/slide3.png"),
+    image: require("../../constants/images.js").slide3,
     title: "Fresh & Healthy",
     subtitle: "New Arrivals",
     text: "Explore the latest dry food collection",
     btn: "Explore",
   },
   {
-    image: require("../../Image/FoodNex/slide4.png"),
+    image: require("../../constants/images.js").slide4,
     title: "Elevate Your Meals",
     subtitle: "Pro Collection",
     text: "Enhance your cooking with premium ingredients",

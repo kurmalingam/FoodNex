@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -114,8 +115,8 @@ const Footer = () => {
             <div className="foot_logo">
               <Link to="/" style={{ textDecoration: "none" }}>
                 <img
-                  src={require("../../../Image/Footer/logo.png")}
-                  alt="cricket weapon logo"
+src="https://res.cloudinary.com/dhpr8x0ja/image/upload/v1729500000/foodnex/footer-logo_foodnex.png"
+                  alt="FoodNex logo"
                 />
                 <h1 className="Foot_heading">FoodNex</h1>
               </Link>
